@@ -20,6 +20,7 @@ public class AddEditAlbum extends AppCompatActivity {
     public static final String ALBUM_NAME = "albumName";
     EditText input;
     Button save, cancel;
+    int albumIndex;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,8 +32,8 @@ public class AddEditAlbum extends AppCompatActivity {
         // see if info was passed in to populate fields
         Bundle bundle = getIntent().getExtras();
         if (bundle != null) {
-            //albumIndex = bundle.getInt(ALBUM_INDEX);
-            //albumName.setText(bundle.getString(ALBUM_NAME));
+            albumIndex = bundle.getInt(ALBUM_INDEX);
+            input.setText(bundle.getString(ALBUM_NAME));
         }
 
         super.onCreate(savedInstanceState);
@@ -49,8 +50,7 @@ public class AddEditAlbum extends AppCompatActivity {
 
         if(name==null || name.length()==0){
             Bundle bundle = new Bundle();
-            bundle.putString(AlbumDialog.MESSAGE_KEY,
-                    "Album Name Required");
+            bundle.putString(AlbumDialog.MESSAGE_KEY, "Album Name Required");
             DialogFragment newFragment = new AlbumDialog();
             newFragment.setArguments(bundle);
             newFragment.show(getFragmentManager(), "badfields");
@@ -58,8 +58,8 @@ public class AddEditAlbum extends AppCompatActivity {
         }
 
         Bundle bundle = new Bundle();
-        //bundle.putInt(ALBUM_INDEX, albumIndex);
-        bundle.putString(ALBUM_NAME,name);
+        bundle.putInt(ALBUM_INDEX, albumIndex);
+        bundle.putString(ALBUM_NAME, name);
 
         // send back to caller
         Intent intent = new Intent();
