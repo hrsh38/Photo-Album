@@ -18,6 +18,7 @@
         android:layout_height="wrap_content"
         android:layout_x="275dp"
         android:layout_y="390dp"
+        android:layout_weight="1"
         android:text="Button" />
 
     <Button
@@ -26,6 +27,7 @@
         android:layout_height="wrap_content"
         android:layout_x="156dp"
         android:layout_y="390dp"
+        android:layout_weight="1"
         android:text="Button" />
 
     <Button
@@ -34,6 +36,7 @@
         android:layout_height="wrap_content"
         android:layout_x="30dp"
         android:layout_y="391dp"
+        android:layout_weight="1"
         android:text="Button" />
 
     <TextView
@@ -50,5 +53,6 @@
         android:layout_height="34dp"
         android:layout_x="161dp"
         android:layout_y="327dp"
+        android:elevation="24dp"
         android:text="Button" />
 </AbsoluteLayout>
