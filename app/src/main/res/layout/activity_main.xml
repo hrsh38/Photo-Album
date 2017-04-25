@@ -32,6 +32,7 @@
         android:layout_height="76dp"
         android:layout_x="230dp"
         android:layout_y="155dp"
+        android:onClick="Create"
         android:text="Create Album" />
 
     <ListView

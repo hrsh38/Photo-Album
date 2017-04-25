@@ -11,7 +11,7 @@ import android.app.DialogFragment;
 import static android.R.id.input;
 
 /**
- * Created by mustu on 4/25/2017.
+ * Created by Mustufa on 4/25/2017.
  */
 
 public class AddEditAlbum extends AppCompatActivity {
@@ -58,7 +58,7 @@ public class AddEditAlbum extends AppCompatActivity {
         }
 
         Bundle bundle = new Bundle();
-        bundle.putInt(ALBUM_INDEX, albumIndex);
+        //bundle.putInt(ALBUM_INDEX, albumIndex);
         bundle.putString(ALBUM_NAME,name);
 
         // send back to caller

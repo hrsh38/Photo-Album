@@ -1,7 +1,9 @@
 package com.example.mustu.androidphotos31;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ListView;
 
 import java.util.ArrayList;
@@ -20,6 +22,11 @@ public class MainActivity extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+    }
+
+    public void Create(View view){
+        Intent intent = new Intent(this, AddEditAlbum.class);
+        startActivityForResult(intent, ADD_MOVIE_CODE);
     }
 
 
