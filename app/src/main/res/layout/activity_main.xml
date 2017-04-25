@@ -2,12 +2,6 @@
 <AbsoluteLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent" android:layout_height="match_parent">
 
-    <ListView
-        android:layout_width="217dp"
-        android:layout_height="513dp"
-        android:layout_x="-3dp"
-        android:layout_y="0dp" />
-
     <Button
         android:id="@+id/button5"
         android:layout_width="wrap_content"
@@ -39,5 +33,12 @@
         android:layout_x="230dp"
         android:layout_y="155dp"
         android:text="Create Album" />
+
+    <ListView
+        android:id="@+id/album_list"
+        android:layout_width="217dp"
+        android:layout_height="513dp"
+        android:layout_x="-2dp"
+        android:layout_y="4dp" />
 
 </AbsoluteLayout>
