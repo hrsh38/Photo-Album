@@ -12,7 +12,8 @@
         android:text="Album Name" />
 
     <EditText
-        android:id="@+id/add_album"
+        android:id="@+id/add"
+        style="@style/Widget.AppCompat.EditText"
         android:layout_width="308dp"
         android:layout_height="wrap_content"
         android:layout_x="27dp"

@@ -16,8 +16,8 @@ public class Album implements Serializable{
 	 * 
 	 */
 	private static final long serialVersionUID = 4571691897272213938L;
-	private String albumName;
-	private ArrayList<Photo> photoList;
+	public String albumName;
+	public ArrayList<Photo> photoList;
 	/**
 	 * 
 	 * @param albumName name of the album
