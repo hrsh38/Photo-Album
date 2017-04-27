@@ -30,7 +30,9 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         listView = (ListView) findViewById(R.id.album_list);
-        showAlbumList();
+        adapter = new ArrayAdapter<Album>(this,android.R.layout.simple_list_item_1,albums);
+
+        //showAlbumList();
         handleIntent(getIntent());
     }
 
@@ -39,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
         startActivityForResult(intent, ADD_ALBUM_CODE);
     }
 
-    public void openAlbum(View view){
+    public void OpenAlbum(View view){
         Intent intent = new Intent(this, addPhoto.class);
         startActivityForResult(intent, OPEN_ALBUM_CODE);
     }
@@ -49,7 +51,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void showAlbumList(){
-        listView.setAdapter(new ArrayAdapter<Album>(this, android.R.layout.simple_list_item_1, albums));
+        //listView.setAdapter(new ArrayAdapter<Album>(this, android.R.layout.simple_list_item_1, albums));
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -88,7 +90,7 @@ public class MainActivity extends AppCompatActivity {
             ArrayList<Photo> photos = new ArrayList<>();
             albums.add(new Album(name, photos));
         }
-        listView.deferNotifyDataSetChanged();
+        listView.setAdapter(new ArrayAdapter<Album>(this, android.R.layout.simple_list_item_1, albums));
     }
 
     private void showAlbum(int position){

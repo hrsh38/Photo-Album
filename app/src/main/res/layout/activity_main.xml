@@ -45,7 +45,7 @@
         android:layout_height="80dp"
         android:layout_x="223dp"
         android:layout_y="54dp"
-        android:onClick="openAbum"
+        android:onClick="OpenAlbum"
         android:text="Open Album" />
     android:id="@+id/button4"
         android:layout_width="wrap_content"
