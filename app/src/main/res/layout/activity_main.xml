@@ -4,7 +4,7 @@
 
     <ListView
         android:id="@+id/album_list"
-        android:layout_width="240dp"
+        android:layout_width="214dp"
         android:layout_height="579dp"
         android:layout_x="0dp"
         android:layout_y="0dp"
@@ -14,11 +14,28 @@
         android:textSize="10dp" />
 
     <Button
+        android:id="@+id/open"
+        android:layout_width="129dp"
+        android:layout_height="80dp"
+        android:layout_x="226dp"
+        android:layout_y="271dp"
+        android:text="Rename Album" />
+
+    <Button
+        android:id="@+id/button5"
+        android:layout_width="wrap_content"
+        android:layout_height="68dp"
+        android:layout_x="228dp"
+        android:layout_y="388dp"
+        android:onClick="delete"
+        android:text="Delete Album" />
+
+    <Button
         android:id="@+id/button2"
         android:layout_width="wrap_content"
         android:layout_height="76dp"
-        android:layout_x="245dp"
-        android:layout_y="150dp"
+        android:layout_x="225dp"
+        android:layout_y="167dp"
         android:onClick="Create"
         android:text="Create Album" />
 
@@ -26,26 +43,10 @@
         android:id="@+id/open"
         android:layout_width="129dp"
         android:layout_height="80dp"
-        android:layout_x="243dp"
-        android:layout_y="35dp"
+        android:layout_x="223dp"
+        android:layout_y="54dp"
+        android:onClick="openAbum"
         android:text="Open Album" />
-
-    <Button
-        android:id="@+id/button5"
-        android:layout_width="wrap_content"
-        android:layout_height="68dp"
-        android:layout_x="245dp"
-        android:layout_y="391dp"
-        android:onClick="delete"
-        android:text="Delete Album" />
-
-    <Button
-        android:id="@+id/open"
-        android:layout_width="129dp"
-        android:layout_height="80dp"
-        android:layout_x="242dp"
-        android:layout_y="273dp"
-        android:text="Rename Album" />
     android:id="@+id/button4"
         android:layout_width="wrap_content"
         android:layout_height="72dp"

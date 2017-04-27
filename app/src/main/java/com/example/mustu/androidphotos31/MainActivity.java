@@ -23,7 +23,7 @@ public class MainActivity extends AppCompatActivity {
     public ArrayAdapter<Album> adapter;
     public static final int EDIT_ALBUM_CODE = 1;
     public static final int ADD_ALBUM_CODE = 2;
-    public static final int DELETE_ALBUM_CODE = 3;
+    public static final int OPEN_ALBUM_CODE = 3;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,9 +39,9 @@ public class MainActivity extends AppCompatActivity {
         startActivityForResult(intent, ADD_ALBUM_CODE);
     }
 
-    public void delete(View view){
+    public void openAlbum(View view){
         Intent intent = new Intent(this, addPhoto.class);
-        startActivityForResult(intent, DELETE_ALBUM_CODE);
+        startActivityForResult(intent, OPEN_ALBUM_CODE);
     }
 
     public void handleIntent(Intent intent){
