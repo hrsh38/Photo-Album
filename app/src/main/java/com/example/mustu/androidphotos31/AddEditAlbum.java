@@ -50,9 +50,7 @@ public class AddEditAlbum extends AppCompatActivity {
     }
 
     public void addAlbum(View view){
-
-        String name = input.getText().toString();   //Fix this, goes to null pointer
-
+        String name = input.getText().toString();
         //Checks to see if input is null and returns
         if(name == null || name.length()==0){
             Bundle bundle = new Bundle();
@@ -66,10 +64,9 @@ public class AddEditAlbum extends AppCompatActivity {
         bundle.putInt(ALBUM_INDEX, albumIndex);
         bundle.putString(ALBUM_NAME, name);
 
-        // send back to caller
         Intent intent = new Intent();
         intent.putExtras(bundle);
-        setResult(RESULT_OK,intent);
+        setResult(RESULT_OK, intent);
         finish();
     }
 

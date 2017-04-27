@@ -3,12 +3,15 @@ package com.example.mustu.androidphotos31;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.Toast;
+
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
@@ -26,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         listView = (ListView) findViewById(R.id.album_list);
-        handleIntent(getIntent());
+        //handleIntent(getIntent());
     }
 
     public void Create(View view){
@@ -55,6 +58,8 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent intent) {
+        super.onActivityResult(requestCode, resultCode,intent);
+
         if (resultCode != RESULT_OK) {
             return;
         }
@@ -66,6 +71,8 @@ public class MainActivity extends AppCompatActivity {
 
         String name = bundle.getString(AddEditAlbum.ALBUM_NAME);
         int index = bundle.getInt(AddEditAlbum.ALBUM_INDEX);
+
+        Toast.makeText(getApplicationContext(), name + ", " + index, Toast.LENGTH_LONG).show();
 
         if (requestCode == EDIT_ALBUM_CODE){
             Album album = albums.get(index);
@@ -79,7 +86,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void showAlbum(int position){
-
         Bundle bundle = new Bundle();
         Album album = albums.get(position);
         bundle.putInt(AddEditAlbum.ALBUM_INDEX, position);
