@@ -14,14 +14,6 @@
         android:textSize="10dp" />
 
     <Button
-        android:id="@+id/open"
-        android:layout_width="129dp"
-        android:layout_height="80dp"
-        android:layout_x="254dp"
-        android:layout_y="31dp"
-        android:text="Open Album" />
-
-    <Button
         android:id="@+id/button2"
         android:layout_width="wrap_content"
         android:layout_height="76dp"
@@ -45,5 +37,13 @@
         android:layout_x="252dp"
         android:layout_y="456dp"
         android:text="Delete Album" />
+
+    <Button
+        android:id="@+id/open"
+        android:layout_width="129dp"
+        android:layout_height="80dp"
+        android:layout_x="253dp"
+        android:layout_y="31dp"
+        android:text="Open Album" />
 
 </AbsoluteLayout>
