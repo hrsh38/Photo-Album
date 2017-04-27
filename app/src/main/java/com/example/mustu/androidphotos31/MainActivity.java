@@ -54,11 +54,20 @@ public class MainActivity extends AppCompatActivity {
         }
 
         // redo Adapter since source content has changed
-        //listView.setAdapter(new ArrayAdapter<Album>(this, album, albums));
+        listView.setAdapter(new ArrayAdapter<Album>(this, android.R.layout.simple_list_item_1, albums));
 
     }
 
+    
 
-
+    private void show(int position){
+        Bundle bundle = new Bundle();
+        Album album = albums.get(position);
+        bundle.putInt(AddEditAlbum.ALBUM_INDEX, position);
+        bundle.putString(AddEditAlbum.ALBUM_NAME, album.albumName);
+        Intent intent = new Intent();
+        intent.putExtras(bundle);
+        startActivityForResult(intent, EDIT_ALBUM_CODE);
+    }
 
 }

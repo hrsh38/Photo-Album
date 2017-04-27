@@ -37,9 +37,13 @@
 
     <ListView
         android:id="@+id/album_list"
-        android:layout_width="217dp"
-        android:layout_height="513dp"
-        android:layout_x="-2dp"
-        android:layout_y="4dp" />
+        android:layout_width="221dp"
+        android:layout_height="531dp"
+        android:layout_x="-1dp"
+        android:layout_y="-10dp"
+        android:background="#000000"
+        android:padding="10dp"
+        android:textColor="#ffffff"
+        android:textSize="10dp" />
 
 </AbsoluteLayout>
