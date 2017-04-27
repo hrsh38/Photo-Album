@@ -30,9 +30,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         listView = (ListView) findViewById(R.id.album_list);
-        adapter = new ArrayAdapter<Album>(this,android.R.layout.simple_list_item_1,albums);
-
-        //showAlbumList();
+        adapter = new ArrayAdapter<Album>(this,R.layout.album,albums);
         handleIntent(getIntent());
     }
 
@@ -51,7 +49,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void showAlbumList(){
-        //listView.setAdapter(new ArrayAdapter<Album>(this, android.R.layout.simple_list_item_1, albums));
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -86,11 +83,11 @@ public class MainActivity extends AppCompatActivity {
             album.albumName = name;
         }
         else if (requestCode == ADD_ALBUM_CODE){
-            Toast.makeText(getApplicationContext(), "adfadfa", Toast.LENGTH_LONG).show();
+            Toast.makeText(getApplicationContext(), name + ", " + index, Toast.LENGTH_LONG).show();
             ArrayList<Photo> photos = new ArrayList<>();
             albums.add(new Album(name, photos));
         }
-        listView.setAdapter(new ArrayAdapter<Album>(this, android.R.layout.simple_list_item_1, albums));
+        listView.setAdapter(new ArrayAdapter<Album>(this, R.layout.album, albums));
     }
 
     private void showAlbum(int position){
@@ -98,7 +95,7 @@ public class MainActivity extends AppCompatActivity {
         Album album = albums.get(position);
         bundle.putInt(AddEditAlbum.ALBUM_INDEX, position);
         bundle.putString(AddEditAlbum.ALBUM_NAME, album.albumName);
-        Intent intent = new Intent();
+        Intent intent = new Intent(this, AddEditAlbum.class);
         intent.putExtras(bundle);
         startActivityForResult(intent, EDIT_ALBUM_CODE);
     }
