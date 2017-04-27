@@ -8,9 +8,9 @@
         android:layout_height="579dp"
         android:layout_x="0dp"
         android:layout_y="0dp"
-        android:background="#000000"
+
         android:padding="10dp"
-        android:textColor="#ffffff"
+        android:textColor="#000000"
         android:textSize="10dp" />
 
     <Button
@@ -36,16 +36,17 @@
         android:layout_height="68dp"
         android:layout_x="245dp"
         android:layout_y="391dp"
+        android:onClick="delete"
         android:text="Delete Album" />
 
     <Button
         android:id="@+id/open"
         android:layout_width="129dp"
         android:layout_height="80dp"
-        android:layout_x="253dp"
-        android:layout_y="31dp"
-        android:text="Open Album" />
-        android:id="@+id/button4"
+        android:layout_x="242dp"
+        android:layout_y="273dp"
+        android:text="Rename Album" />
+    android:id="@+id/button4"
         android:layout_width="wrap_content"
         android:layout_height="72dp"
         android:layout_x="246dp"
