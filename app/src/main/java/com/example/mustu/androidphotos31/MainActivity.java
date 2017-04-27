@@ -19,7 +19,7 @@ public class MainActivity extends AppCompatActivity {
     ListView listView;
     Button openAlbum;
     EditText edit;
-    public ArrayList<Album> albums;
+    public ArrayList<Album> albums = new ArrayList<Album>();
     public ArrayAdapter<Album> adapter;
     public static final int EDIT_ALBUM_CODE = 1;
     public static final int ADD_ALBUM_CODE = 2;
@@ -29,7 +29,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         listView = (ListView) findViewById(R.id.album_list);
-        //handleIntent(getIntent());
+        showAlbumList();
+        handleIntent(getIntent());
     }
 
     public void Create(View view){
@@ -72,17 +73,16 @@ public class MainActivity extends AppCompatActivity {
         String name = bundle.getString(AddEditAlbum.ALBUM_NAME);
         int index = bundle.getInt(AddEditAlbum.ALBUM_INDEX);
 
-        Toast.makeText(getApplicationContext(), name + ", " + index, Toast.LENGTH_LONG).show();
-
         if (requestCode == EDIT_ALBUM_CODE){
             Album album = albums.get(index);
             album.albumName = name;
         }
         else if (requestCode == ADD_ALBUM_CODE){
+            Toast.makeText(getApplicationContext(), "adfadfa", Toast.LENGTH_LONG).show();
             ArrayList<Photo> photos = new ArrayList<>();
             albums.add(new Album(name, photos));
         }
-        listView.setAdapter(new ArrayAdapter<Album>(this, android.R.layout.simple_list_item_1, albums));
+        listView.deferNotifyDataSetChanged();
     }
 
     private void showAlbum(int position){
