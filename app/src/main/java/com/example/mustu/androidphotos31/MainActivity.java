@@ -58,6 +58,8 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent intent) {
+        super.onActivityResult(requestCode, resultCode,intent);
+
         if (resultCode != RESULT_OK) {
             return;
         }
@@ -70,19 +72,17 @@ public class MainActivity extends AppCompatActivity {
         String name = bundle.getString(AddEditAlbum.ALBUM_NAME);
         int index = bundle.getInt(AddEditAlbum.ALBUM_INDEX);
 
+        Toast.makeText(getApplicationContext(), name + ", " + index, Toast.LENGTH_LONG).show();
 
-
-        if (resultCode == EDIT_ALBUM_CODE){
+        if (requestCode == EDIT_ALBUM_CODE){
             Album album = albums.get(index);
             album.albumName = name;
         }
-        else if (resultCode == ADD_ALBUM_CODE){
-            Toast.makeText(getApplicationContext(), name + ", " + index, Toast.LENGTH_LONG).show();
-            //ArrayList<Photo> photos = new ArrayList<>();
-            //albums.add(new Album(name, photos));
+        else if (requestCode == ADD_ALBUM_CODE){
+            ArrayList<Photo> photos = new ArrayList<>();
+            albums.add(new Album(name, photos));
         }
         listView.setAdapter(new ArrayAdapter<Album>(this, android.R.layout.simple_list_item_1, albums));
-
     }
 
     private void showAlbum(int position){

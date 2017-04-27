@@ -79,5 +79,3 @@
         android:elevation="24dp"
         android:text="Add Tag" />
 </RelativeLayout>
-
-</RelativeLayout>
