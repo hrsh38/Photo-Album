@@ -37,7 +37,7 @@ public class addPhoto extends AppCompatActivity implements  View.OnClickListener
 
     @Override
     public void onClick(View view) {
-        if(view.getId() == R.id.imageView){
+        if(view.getId() == R.id.add){
             Intent galleryIntent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
             startActivityForResult(galleryIntent,RESULT_LOAD_IMAGE);
         }
