@@ -19,11 +19,9 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
-        listView = (ListView) findViewById(R.id.album_list);
-
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        listView = (ListView) findViewById(R.id.album_list);
     }
 
     public void Create(View view){

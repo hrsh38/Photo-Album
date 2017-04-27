@@ -29,6 +29,9 @@ public class AddEditAlbum extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.add_album);
+
         save = (Button) findViewById(R.id.save);
         cancel = (Button) findViewById(R.id.cancel);
         input = (EditText) findViewById(R.id.add);
@@ -39,9 +42,6 @@ public class AddEditAlbum extends AppCompatActivity {
             albumIndex = bundle.getInt(ALBUM_INDEX);
             input.setText(bundle.getString(ALBUM_NAME));
         }
-
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.add_album);
     }
 
     public void Cancel(View view) {
@@ -55,7 +55,6 @@ public class AddEditAlbum extends AppCompatActivity {
 
         //Checks to see if input is null and returns
         if(name == null || name.length()==0){
-            Toast.makeText(AddEditAlbum.this, "Enter valid email", Toast.LENGTH_SHORT).show();
             Bundle bundle = new Bundle();
             bundle.putString(AlbumDialog.MESSAGE_KEY, "Album Name Required");
             DialogFragment newFragment = new AlbumDialog();
@@ -63,7 +62,6 @@ public class AddEditAlbum extends AppCompatActivity {
             newFragment.show(getFragmentManager(), "badfields");
             return;
         }
-        //Toast.makeText(AddEditAlbum.this, "Enter valid email", Toast.LENGTH_SHORT).show();
         Bundle bundle = new Bundle();
         bundle.putInt(ALBUM_INDEX, albumIndex);
         bundle.putString(ALBUM_NAME, name);
