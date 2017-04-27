@@ -1,6 +1,8 @@
 package com.example.mustu.androidphotos31;
 
 
+import android.media.Image;
+
 import java.io.File;
 import java.io.Serializable;
 import java.text.DateFormat;
@@ -27,6 +29,7 @@ public class Photo implements Serializable{
 	private String photoAdr;
 	private String dateCreated;
 	private DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+	private Image im;
 	
 	/**
 	 * 
@@ -44,7 +47,9 @@ public class Photo implements Serializable{
 		this.caption = caption;
 		tagList = new ArrayList<Tag>();
 		this.caption = caption; //makes a new empty caption list
+
 	}
+
 	/**
 	 * 
 	 * @return the tag list

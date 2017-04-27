@@ -34,7 +34,10 @@ public class addPhoto extends AppCompatActivity implements  View.OnClickListener
         add.setOnClickListener(this);
 
     }
-
+    public void Cancels(View view) {
+        setResult(RESULT_CANCELED);
+        finish();   //Returns to previous page on call stack
+    }
     @Override
     public void onClick(View view) {
         if(view.getId() == R.id.add){
