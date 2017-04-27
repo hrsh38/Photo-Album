@@ -2,6 +2,7 @@ package com.example.mustu.androidphotos31;
 
 
 import android.media.Image;
+import android.net.Uri;
 
 import java.io.File;
 import java.io.Serializable;
@@ -29,32 +30,35 @@ public class Photo implements Serializable{
 	private String photoAdr;
 	private String dateCreated;
 	private DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
-	private Image im;
+	private Uri im;
 	
 	/**
 	 * 
 	 * @param photoName name of the photo
-	 * @param url location of the photo
+	 * //@param url location of the photo
 	 * @param caption list to hold a photo's captions
 	 * @param tag list to hold a photo's tags
 	 */
-	public Photo(String photoName, String url, String caption){
+	public Photo(String photoName, String caption, Uri img){
 		this.photoName = photoName;
-		this.photoAdr = url;
+		//this.photoAdr = url;
 		Calendar cal = Calendar.getInstance();
 		cal.set(Calendar.MILLISECOND, 0);
 		this.dateCreated = dateFormat.format(cal.getTime()); //sets the time
 		this.caption = caption;
 		tagList = new ArrayList<Tag>();
 		this.caption = caption; //makes a new empty caption list
-
+		im = img;
 	}
 
+	public Uri getImage(){
+		return im;
+	}
 	/**
 	 * 
 	 * @return the tag list
 	 */
-	public ArrayList<Tag> getTagList(){
+	public ArrayList<Tag> getTagList() {
 		return tagList;
 	}
 	/**

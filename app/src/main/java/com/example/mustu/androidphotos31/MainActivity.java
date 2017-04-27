@@ -84,11 +84,13 @@ public class MainActivity extends AppCompatActivity {
         if (requestCode == EDIT_ALBUM_CODE){
             Album album = albums.get(index);
             album.albumName = name;
+
         }
         else if (requestCode == ADD_ALBUM_CODE){
             Toast.makeText(getApplicationContext(), "adfadfa", Toast.LENGTH_LONG).show();
             ArrayList<Photo> photos = new ArrayList<>();
             albums.add(new Album(name, photos));
+            
         }
         listView.setAdapter(new ArrayAdapter<Album>(this, android.R.layout.simple_list_item_1, albums));
     }

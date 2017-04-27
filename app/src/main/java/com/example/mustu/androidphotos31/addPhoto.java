@@ -51,7 +51,8 @@ public class addPhoto extends AppCompatActivity implements  View.OnClickListener
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == RESULT_LOAD_IMAGE && resultCode == RESULT_OK &&data != null){
             Uri selectedImage = data.getData();
-            imageToUpload.setImageURI(selectedImage);
+            Photo photo = new Photo("photo1","caption",selectedImage);
+            imageToUpload.setImageURI(photo.getImage());
         }
     }
 }
