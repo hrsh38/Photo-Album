@@ -39,20 +39,17 @@
         android:text="Delete Album" />
 
     <Button
-<<<<<<< HEAD
         android:id="@+id/open"
         android:layout_width="129dp"
         android:layout_height="80dp"
         android:layout_x="253dp"
         android:layout_y="31dp"
         android:text="Open Album" />
-=======
         android:id="@+id/button4"
         android:layout_width="wrap_content"
         android:layout_height="72dp"
         android:layout_x="246dp"
         android:layout_y="267dp"
         android:text="Rename Album" />
->>>>>>> 556bcf2db1ff3a2d7e5413d1aa1652182d2ce631
 
 </AbsoluteLayout>
