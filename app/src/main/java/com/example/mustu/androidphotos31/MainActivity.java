@@ -9,6 +9,8 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.Toast;
+
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
@@ -26,7 +28,10 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         listView = (ListView) findViewById(R.id.album_list);
-        handleIntent(getIntent());
+        //handleIntent(getIntent());
+        Bundle bundle = new Bundle();
+        String name = bundle.getString(AddEditAlbum.ALBUM_NAME);
+        System.out.println(name);
     }
 
     public void Create(View view){
@@ -34,6 +39,7 @@ public class MainActivity extends AppCompatActivity {
         startActivityForResult(intent, ADD_ALBUM_CODE);
     }
 
+    /*
     public void handleIntent(Intent intent){
         showAlbumList();
     }
@@ -77,9 +83,9 @@ public class MainActivity extends AppCompatActivity {
         }
         listView.setAdapter(new ArrayAdapter<Album>(this, android.R.layout.simple_list_item_1, albums));
     }
-
+    */
+    
     private void showAlbum(int position){
-
         Bundle bundle = new Bundle();
         Album album = albums.get(position);
         bundle.putInt(AddEditAlbum.ALBUM_INDEX, position);
@@ -88,5 +94,4 @@ public class MainActivity extends AppCompatActivity {
         intent.putExtras(bundle);
         startActivityForResult(intent, EDIT_ALBUM_CODE);
     }
-
 }
