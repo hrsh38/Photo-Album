@@ -79,6 +79,7 @@ public class MainActivity extends AppCompatActivity {
         int index = bundle.getInt(AddEditAlbum.ALBUM_INDEX);
 
         if (requestCode == EDIT_ALBUM_CODE){
+            Toast.makeText(getApplicationContext(), name + ", " + index, Toast.LENGTH_LONG).show();
             Album album = albums.get(index);
             album.albumName = name;
 
