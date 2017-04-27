@@ -3,6 +3,7 @@ package com.example.mustu.androidphotos31;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -29,9 +30,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         listView = (ListView) findViewById(R.id.album_list);
         //handleIntent(getIntent());
-        Bundle bundle = new Bundle();
-        String name = bundle.getString(AddEditAlbum.ALBUM_NAME);
-        System.out.println(name);
     }
 
     public void Create(View view){
@@ -39,7 +37,6 @@ public class MainActivity extends AppCompatActivity {
         startActivityForResult(intent, ADD_ALBUM_CODE);
     }
 
-    /*
     public void handleIntent(Intent intent){
         showAlbumList();
     }
@@ -73,18 +70,21 @@ public class MainActivity extends AppCompatActivity {
         String name = bundle.getString(AddEditAlbum.ALBUM_NAME);
         int index = bundle.getInt(AddEditAlbum.ALBUM_INDEX);
 
-        if (requestCode == EDIT_ALBUM_CODE){
+
+
+        if (resultCode == EDIT_ALBUM_CODE){
             Album album = albums.get(index);
             album.albumName = name;
         }
-        else if (requestCode == ADD_ALBUM_CODE){
-            ArrayList<Photo> photos = new ArrayList<>();
-            albums.add(new Album(name, photos));
+        else if (resultCode == ADD_ALBUM_CODE){
+            Toast.makeText(getApplicationContext(), name + ", " + index, Toast.LENGTH_LONG).show();
+            //ArrayList<Photo> photos = new ArrayList<>();
+            //albums.add(new Album(name, photos));
         }
         listView.setAdapter(new ArrayAdapter<Album>(this, android.R.layout.simple_list_item_1, albums));
+
     }
-    */
-    
+
     private void showAlbum(int position){
         Bundle bundle = new Bundle();
         Album album = albums.get(position);
@@ -94,4 +94,5 @@ public class MainActivity extends AppCompatActivity {
         intent.putExtras(bundle);
         startActivityForResult(intent, EDIT_ALBUM_CODE);
     }
+
 }
