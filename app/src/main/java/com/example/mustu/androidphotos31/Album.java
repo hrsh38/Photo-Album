@@ -55,6 +55,11 @@ public class Album implements Serializable{
 	public String getAlbumName(){
 		return albumName;
 	}
+	@Override
+	public String toString() {
+		return getAlbumName();
+	}
+
 	/**
 	 * 
 	 * @param albName passes a string

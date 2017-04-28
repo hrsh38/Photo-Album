@@ -21,6 +21,7 @@ public class MainActivity extends AppCompatActivity {
     EditText edit;
     public ArrayList<Album> albums = new ArrayList<Album>();
     public ArrayAdapter<Album> adapter;
+    public AlbumListAdapter adapters;
     public static final int EDIT_ALBUM_CODE = 1;
     public static final int ADD_ALBUM_CODE = 2;
     public static final int OPEN_ALBUM_CODE = 3;
@@ -29,8 +30,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-
 
         listView = (ListView) findViewById(R.id.album_list);
         //adapter = new ArrayAdapter<Album>(this,R.layout.album,albums);
@@ -53,6 +52,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void showAlbumList(){
+        listView.setAdapter(new ArrayAdapter<Album>(this, R.layout.album, albums));
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -97,7 +97,7 @@ public class MainActivity extends AppCompatActivity {
         else if(requestCode == OPEN_ALBUM_CODE){
 
         }
-        listView.setAdapter(new ArrayAdapter<Album>(this, R.layout.album, albums));
+       listView.setAdapter(new ArrayAdapter<Album>(this,R.layout.album,albums));
     }
 
     private void showAlbum(int position){
