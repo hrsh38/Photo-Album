@@ -74,7 +74,7 @@ public class addPhoto extends AppCompatActivity implements  View.OnClickListener
             //images.setImageURI(photo.getImage());
             imageToUpload.setImageURI(photo.getImage());
         }
-        else(requestCode == RESULT_LOAD_IMAGE && resultCode == RESULT_OK &&data != null){
+        else if(requestCode == RESULT_LOAD_IMAGE && resultCode == RESULT_OK && data != null){
             Uri selectedImage = data.getData();
             Photo photo = new Photo("temp","caption",selectedImage);
             album.deletePhoto(photo);
