@@ -9,6 +9,7 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageSwitcher;
 import android.widget.ImageView;
 
 
@@ -18,9 +19,12 @@ import android.widget.ImageView;
 
 public class addPhoto extends AppCompatActivity implements  View.OnClickListener{
     private static final int RESULT_LOAD_IMAGE = 1;
+    private static final int RESULT_DELETE_IMAGE = 2;
     ImageView imageToUpload;
+    //ImageSwitcher images;
     Button add, remove;
     Album album;
+    int index = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,7 +51,14 @@ public class addPhoto extends AppCompatActivity implements  View.OnClickListener
             startActivityForResult(addIntent,RESULT_LOAD_IMAGE);
         }
         if(view.getId() == R.id.remove){
-
+            if(!album.photoList.isEmpty()){
+                Intent crimsonIntent = new Intent(Intent.ACTION_PICK, album.photoList.get(index).getImage());
+                startActivityForResult(crimsonIntent,RESULT_DELETE_IMAGE);
+            }
+            else{
+                //NOTHING TO REMOVE MESSAGE
+            }
+            //Intent crimsonIntent = new Intent(Intent.ACTION_DELETE,imageToUpload.getI)
 
         }
 
@@ -60,7 +71,20 @@ public class addPhoto extends AppCompatActivity implements  View.OnClickListener
             Uri selectedImage = data.getData();
             Photo photo = new Photo("photo1","caption",selectedImage);
             album.addPhoto(photo);
+            //images.setImageURI(photo.getImage());
             imageToUpload.setImageURI(photo.getImage());
+        }
+        else(requestCode == RESULT_LOAD_IMAGE && resultCode == RESULT_OK &&data != null){
+            Uri selectedImage = data.getData();
+            Photo photo = new Photo("temp","caption",selectedImage);
+            album.deletePhoto(photo);
+            if(index-1<0){
+                index -= 1;
+                imageToUpload.setImageURI(album.getPhotoList().get(index).getImage());
+            }
+            else{
+                imageToUpload.setTag(R.drawable.no);
+            }
         }
 
     }
