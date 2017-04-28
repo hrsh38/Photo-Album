@@ -97,7 +97,9 @@ public class MainActivity extends AppCompatActivity {
         else if(requestCode == OPEN_ALBUM_CODE){
 
         }
-       listView.setAdapter(new ArrayAdapter<Album>(this,R.layout.album,albums));
+
+        ad
+        listView.setAdapter(new ArrayAdapter<Album>(this,R.layout.album,albums));
     }
 
     private void showAlbum(int position){
