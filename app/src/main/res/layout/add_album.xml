@@ -47,13 +47,4 @@
         android:layout_y="277dp"
         app:srcCompat="@drawable/images" />
 
-    <Button
-        android:id="@+id/button3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_x="130dp"
-        android:layout_y="209dp"
-        android:onClick="deleteItem"
-        android:text="Delete" />
-
 </AbsoluteLayout>

@@ -62,7 +62,7 @@ public class MainActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 //showAlbum(position);
                 positions = position;
-                //Toast.makeText(getApplicationContext(), positions, Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(), "Positions at: " + positions + " was clicked", Toast.LENGTH_SHORT).show();
             }
         });
     }
