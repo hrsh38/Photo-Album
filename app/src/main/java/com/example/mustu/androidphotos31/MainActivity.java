@@ -27,6 +27,8 @@ public class MainActivity extends AppCompatActivity {
     public static final int OPEN_ALBUM_CODE = 3;
     public static final int DELETE_ALBUM_CODE = 4;
 
+    int positions = 0;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -58,7 +60,9 @@ public class MainActivity extends AppCompatActivity {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                showAlbum(position);
+                //showAlbum(position);
+                positions = position;
+                //Toast.makeText(getApplicationContext(), positions, Toast.LENGTH_LONG).show();
             }
         });
     }
@@ -91,6 +95,7 @@ public class MainActivity extends AppCompatActivity {
         else if (requestCode == ADD_ALBUM_CODE){
             ArrayList<Photo> photos = new ArrayList<>();
             albums.add(new Album(name, photos));
+            //Toast.makeText(getApplicationContext(), positions, Toast.LENGTH_LONG).show();
         }
         else if (requestCode == DELETE_ALBUM_CODE){
             albums.remove(index);
@@ -103,6 +108,7 @@ public class MainActivity extends AppCompatActivity {
         adapter.notifyDataSetChanged();
     }
 
+    /*
     private void showAlbum(int position){
         Bundle bundle = new Bundle();
         Album album = albums.get(position);
@@ -111,5 +117,23 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this, AddEditAlbum.class);
         intent.putExtras(bundle);
         startActivityForResult(intent, EDIT_ALBUM_CODE);
+    }
+    */
+
+    public void rename(View view){
+        Bundle bundle = new Bundle();
+        Album album = albums.get(positions);
+        bundle.putInt(AddEditAlbum.ALBUM_INDEX, positions);
+        bundle.putString(AddEditAlbum.ALBUM_NAME, album.albumName);
+        Intent intent = new Intent(this, AddEditAlbum.class);
+        intent.putExtras(bundle);
+        startActivityForResult(intent, EDIT_ALBUM_CODE);
+    }
+
+    public void delete(View view){
+        albums.remove(positions);
+        adapter = new ArrayAdapter<Album>(this, R.layout.album, albums);
+        listView.setAdapter(adapter);
+        adapter.notifyDataSetChanged();
     }
 }
