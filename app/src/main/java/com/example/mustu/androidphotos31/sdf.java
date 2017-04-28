@@ -9,20 +9,17 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageSwitcher;
 import android.widget.ImageView;
-import android.widget.Toast;
-
 
 import java.util.ArrayList;
-
-import static com.example.mustu.androidphotos31.R.drawable.no;
 
 
 /**
  * Created by harsh on 4/27/2017.
  */
 
-public class addPhoto extends AppCompatActivity implements  View.OnClickListener{
+public class sdf extends AppCompatActivity implements  View.OnClickListener{
     private static final int RESULT_LOAD_IMAGE = 1;
     private static final int RESULT_DELETE_IMAGE = 2;
     ImageView imageToUpload;
@@ -31,22 +28,18 @@ public class addPhoto extends AppCompatActivity implements  View.OnClickListener
     Album album = new Album("hi",p);
     int index = -1;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.album_page);
         Intent i = getIntent();
         album = (Album)i.getSerializableExtra("album");
-        imageToUpload = (ImageView) findViewById(R.id.imageView);
-        //remove = (Button) findViewById(R.id.remove);
-
         add = (Button) findViewById(R.id.add);
-
-        imageToUpload.setOnClickListener(this);
+        remove = (Button) findViewById(R.id.remove);
+        //imageToUpload.setTag(R.drawable.no);
+        //imageToUpload.setOnClickListener(this);
         add.setOnClickListener(this);
-        //remove.setOnClickListener(this);
-
+        remove.setOnClickListener(this);
 
     }
     public void Cancels(View view) {
@@ -56,32 +49,22 @@ public class addPhoto extends AppCompatActivity implements  View.OnClickListener
     @Override
     public void onClick(View view) {
         if(view.getId() == R.id.add){
-            Intent galleryIntent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-            startActivityForResult(galleryIntent,RESULT_LOAD_IMAGE);
+            Intent addIntent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+            startActivityForResult(addIntent,RESULT_LOAD_IMAGE);
         }
-
-    }
-    public void delete(View view){
-        if(!album.photoList.isEmpty()) {
-            Toast.makeText(getApplicationContext(), "hi", Toast.LENGTH_LONG).show();
-            album.deletePhoto(album.getPhotoList().get(index));
-            if (index - 1 > 0) {
-                index -= 1;
-
-                imageToUpload.setImageURI(album.getPhotoList().get(index).getImage());
-            } else {
-                imageToUpload.setImageURI(Uri.EMPTY);
+        else if(view.getId() == R.id.remove){
+            if(!album.photoList.isEmpty()){
+                Intent crimsonIntent = new Intent(Intent.ACTION_PICK, album.photoList.get(index).getImage());
+                startActivityForResult(crimsonIntent,RESULT_DELETE_IMAGE);
             }
-
-
+            else{
+                //NOTHING TO REMOVE MESSAGE
+            }
+            //Intent crimsonIntent = new Intent(Intent.ACTION_DELETE,imageToUpload.getI)
         }
-        else{
-            Toast.makeText(getApplicationContext(), "empty", Toast.LENGTH_LONG).show();
-
-        }
-        Toast.makeText(getApplicationContext(), "WORKS", Toast.LENGTH_LONG).show();
 
     }
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -96,7 +79,15 @@ public class addPhoto extends AppCompatActivity implements  View.OnClickListener
         else if(requestCode == RESULT_LOAD_IMAGE && resultCode == RESULT_OK && data != null){
             Uri selectedImage = data.getData();
             Photo photo = new Photo("temp","caption",selectedImage);
-
+            album.deletePhoto(photo);
+            if(index-1<0){
+                index -= 1;
+                imageToUpload.setImageURI(album.getPhotoList().get(index).getImage());
+            }
+            else{
+                imageToUpload.setTag(R.drawable.no);
+            }
         }
+
     }
 }
