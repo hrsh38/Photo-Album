@@ -29,6 +29,9 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+
+
         listView = (ListView) findViewById(R.id.album_list);
         adapter = new ArrayAdapter<Album>(this,R.layout.album,albums);
         handleIntent(getIntent());
@@ -41,6 +44,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void OpenAlbum(View view){
         Intent intent = new Intent(this, addPhoto.class);
+        intent.putExtra("album", albums.get(1));
         startActivityForResult(intent, OPEN_ALBUM_CODE);
     }
 
@@ -59,6 +63,7 @@ public class MainActivity extends AppCompatActivity {
 
     protected void onNewIntent(Intent intent) {
         setIntent(intent);
+        handleIntent(intent);
         handleIntent(intent);
     }
 
@@ -81,13 +86,15 @@ public class MainActivity extends AppCompatActivity {
         if (requestCode == EDIT_ALBUM_CODE){
             Album album = albums.get(index);
             album.albumName = name;
-
         }
         else if (requestCode == ADD_ALBUM_CODE){
             Toast.makeText(getApplicationContext(), name + ", " + index, Toast.LENGTH_LONG).show();
             ArrayList<Photo> photos = new ArrayList<>();
             albums.add(new Album(name, photos));
-            
+
+        }
+        else if(requestCode == OPEN_ALBUM_CODE){
+
         }
         listView.setAdapter(new ArrayAdapter<Album>(this, R.layout.album, albums));
     }

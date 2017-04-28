@@ -19,19 +19,21 @@ import android.widget.ImageView;
 public class addPhoto extends AppCompatActivity implements  View.OnClickListener{
     private static final int RESULT_LOAD_IMAGE = 1;
     ImageView imageToUpload;
-    Button add;
+    Button add, remove;
+    Album album;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.album_page);
-
-        imageToUpload = (ImageView) findViewById(R.id.imageView);
-
+        Intent i = getIntent();
+        album = (Album)i.getSerializableExtra("album");
         add = (Button) findViewById(R.id.add);
+        remove = (Button) findViewById(R.id.remove);
 
-        imageToUpload.setOnClickListener(this);
+        //imageToUpload.setOnClickListener(this);
         add.setOnClickListener(this);
+        remove.setOnClickListener(this);
 
     }
     public void Cancels(View view) {
@@ -41,9 +43,14 @@ public class addPhoto extends AppCompatActivity implements  View.OnClickListener
     @Override
     public void onClick(View view) {
         if(view.getId() == R.id.add){
-            Intent galleryIntent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-            startActivityForResult(galleryIntent,RESULT_LOAD_IMAGE);
+            Intent addIntent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+            startActivityForResult(addIntent,RESULT_LOAD_IMAGE);
         }
+        if(view.getId() == R.id.remove){
+
+
+        }
+
     }
 
     @Override
@@ -52,7 +59,9 @@ public class addPhoto extends AppCompatActivity implements  View.OnClickListener
         if (requestCode == RESULT_LOAD_IMAGE && resultCode == RESULT_OK &&data != null){
             Uri selectedImage = data.getData();
             Photo photo = new Photo("photo1","caption",selectedImage);
+            album.addPhoto(photo);
             imageToUpload.setImageURI(photo.getImage());
         }
+
     }
 }

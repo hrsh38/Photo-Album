@@ -35,8 +35,20 @@ public class Album implements Serializable{
 	public int getPhotoCount(){
 		return photoList.size();
 	}
-	
-	/**
+
+	public void addPhoto(Photo photo){
+        photoList.add(photo);
+    }
+
+    public void deletePhoto(Photo photo) {
+        for(int i = 0; i<photoList.size()-1;i++){
+            if(photoList.get(i) == photo){
+                photoList.remove(i);
+            }
+        }
+    }
+
+    /**
 	 * 
 	 * @return the album name
 	 */
