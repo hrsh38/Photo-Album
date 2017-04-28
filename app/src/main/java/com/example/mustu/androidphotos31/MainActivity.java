@@ -30,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         listView = (ListView) findViewById(R.id.album_list);
-        adapter = new ArrayAdapter<Album>(this,R.layout.album,albums);
+        //adapter = new ArrayAdapter<Album>(this,R.layout.album,albums);
         handleIntent(getIntent());
     }
 
