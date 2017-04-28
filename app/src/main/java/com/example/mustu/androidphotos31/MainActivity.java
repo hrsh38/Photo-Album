@@ -33,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
 
 
         listView = (ListView) findViewById(R.id.album_list);
-        adapter = new ArrayAdapter<Album>(this,R.layout.album,albums);
+        //adapter = new ArrayAdapter<Album>(this,R.layout.album,albums);
         handleIntent(getIntent());
     }
 
@@ -84,6 +84,7 @@ public class MainActivity extends AppCompatActivity {
         int index = bundle.getInt(AddEditAlbum.ALBUM_INDEX);
 
         if (requestCode == EDIT_ALBUM_CODE){
+            Toast.makeText(getApplicationContext(), name + ", " + index, Toast.LENGTH_LONG).show();
             Album album = albums.get(index);
             album.albumName = name;
         }

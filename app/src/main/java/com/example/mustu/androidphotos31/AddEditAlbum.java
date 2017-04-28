@@ -24,7 +24,7 @@ public class AddEditAlbum extends AppCompatActivity {
     public static final String ALBUM_NAME = "albumName";
     EditText input;
     Button save, cancel;
-    int albumIndex;
+    int albumIndex = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
