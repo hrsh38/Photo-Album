@@ -10,7 +10,8 @@
         android:layout_y="0dp"
         android:padding="10dp"
         android:textColor="#000000"
-        android:textSize="10dp" />
+        android:textSize="10dp"
+        android:listSelector="@android:color/darker_gray"/>
 
     <Button
         android:id="@+id/rename"
@@ -18,6 +19,7 @@
         android:layout_height="80dp"
         android:layout_x="226dp"
         android:layout_y="271dp"
+        android:onClick="rename"
         android:text="Rename Album" />
 
     <Button
