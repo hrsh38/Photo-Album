@@ -21,10 +21,11 @@ public class MainActivity extends AppCompatActivity {
     EditText edit;
     public ArrayList<Album> albums = new ArrayList<Album>();
     public ArrayAdapter<Album> adapter;
-    public AlbumListAdapter adapters;
+    //public AlbumListAdapter adapters;
     public static final int EDIT_ALBUM_CODE = 1;
     public static final int ADD_ALBUM_CODE = 2;
     public static final int OPEN_ALBUM_CODE = 3;
+    public static final int DELETE_ALBUM_CODE = 4;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,7 +33,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         listView = (ListView) findViewById(R.id.album_list);
-        //adapter = new ArrayAdapter<Album>(this,R.layout.album,albums);
         handleIntent(getIntent());
     }
 
@@ -66,7 +66,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onNewIntent(Intent intent) {
         setIntent(intent);
         handleIntent(intent);
-        handleIntent(intent);
     }
 
     @Override
@@ -86,21 +85,22 @@ public class MainActivity extends AppCompatActivity {
         int index = bundle.getInt(AddEditAlbum.ALBUM_INDEX);
 
         if (requestCode == EDIT_ALBUM_CODE){
-            Toast.makeText(getApplicationContext(), name + ", " + index, Toast.LENGTH_LONG).show();
             Album album = albums.get(index);
             album.albumName = name;
         }
         else if (requestCode == ADD_ALBUM_CODE){
-            Toast.makeText(getApplicationContext(), name + ", " + index, Toast.LENGTH_LONG).show();
             ArrayList<Photo> photos = new ArrayList<>();
             albums.add(new Album(name, photos));
-
+        }
+        else if (requestCode == DELETE_ALBUM_CODE){
+            albums.remove(index);
         }
         else if(requestCode == OPEN_ALBUM_CODE){
 
         }
-        
-        listView.setAdapter(new ArrayAdapter<Album>(this,R.layout.album,albums));
+        adapter = new ArrayAdapter<Album>(this, R.layout.album, albums);
+        listView.setAdapter(adapter);
+        adapter.notifyDataSetChanged();
     }
 
     private void showAlbum(int position){
@@ -112,5 +112,4 @@ public class MainActivity extends AppCompatActivity {
         intent.putExtras(bundle);
         startActivityForResult(intent, EDIT_ALBUM_CODE);
     }
-
 }
