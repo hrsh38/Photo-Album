@@ -99,8 +99,7 @@ public class MainActivity extends AppCompatActivity {
         else if(requestCode == OPEN_ALBUM_CODE){
 
         }
-
-        ad
+        
         listView.setAdapter(new ArrayAdapter<Album>(this,R.layout.album,albums));
     }
 
