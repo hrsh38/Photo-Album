@@ -3,16 +3,17 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/textView3"
+        android:layout_width="285dp"
+        android:layout_height="228dp"
+        android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="13dp"
-        android:scaleType="fitCenter"
-        app:srcCompat="@drawable/no" />
+        android:layout_marginTop="28dp"
+        android:layout_x="56dp"
+        android:layout_y="40dp"
+        android:cropToPadding="false"
+        app:srcCompat="@android:drawable/bottom_bar" />
 
     <Button
         android:id="@+id/add"
@@ -62,21 +63,21 @@
         android:layout_y="303dp"
         android:text="TextView"
         android:visibility="invisible"
-        android:layout_above="@+id/add"
+        android:layout_below="@+id/imageView"
         android:layout_toEndOf="@+id/back"
-        android:layout_marginBottom="77dp" />
+        android:layout_marginTop="23dp" />
 
     <Button
         android:id="@+id/button8"
         android:layout_width="107dp"
         android:layout_height="34dp"
-        android:layout_marginTop="33dp"
         android:layout_x="143dp"
         android:layout_y="328dp"
         android:elevation="24dp"
         android:text="Add Tag"
-        android:layout_below="@+id/imageView"
-        android:layout_centerHorizontal="true" />
+        android:layout_below="@+id/textView"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="23dp" />
 
     <Button
         android:id="@+id/back"
@@ -95,6 +96,28 @@
         android:layout_alignParentTop="true"
         android:layout_marginStart="22dp"
         android:text="Button" />
+
+    <Button
+        android:id="@+id/left"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/right"
+        android:layout_alignBottom="@+id/right"
+        android:layout_alignParentStart="true"
+        android:layout_toStartOf="@+id/imageView"
+        android:onClick="goLeft"
+        android:text="L" />
+
+    <Button
+        android:id="@+id/right"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/imageView"
+        android:layout_marginTop="84dp"
+        android:layout_toEndOf="@+id/imageView"
+        android:onClick="goRight"
+        android:text="R" />
+
 
 </RelativeLayout>
 

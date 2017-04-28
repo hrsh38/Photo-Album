@@ -30,6 +30,7 @@ public class addPhoto extends AppCompatActivity implements  View.OnClickListener
     ArrayList<Photo> p = new ArrayList<>();
     Album album = new Album("hi",p);
     int index = -1;
+    int size = 0;
 
 
     @Override
@@ -43,11 +44,32 @@ public class addPhoto extends AppCompatActivity implements  View.OnClickListener
 
         add = (Button) findViewById(R.id.add);
 
+
         imageToUpload.setOnClickListener(this);
         add.setOnClickListener(this);
         //remove.setOnClickListener(this);
 
 
+    }
+
+    public void goLeft(View view){
+        if(index - 1 >= 0){
+            index-=1;
+            imageToUpload.setImageURI(album.getPhotoList().get(index).getImage());
+        }
+        else{
+            Toast.makeText(getApplicationContext(),"No more images to the Left!", Toast.LENGTH_LONG).show();
+        }
+    }
+
+    public void goRight(View view){
+        if(index-1<album.getPhotoList().size()-1 && index-1!=-1){
+                index += 1;
+                imageToUpload.setImageURI(album.getPhotoList().get(index).getImage());
+        }
+        else{
+            Toast.makeText(getApplicationContext(),"No more images to the Right!", Toast.LENGTH_LONG).show();
+        }
     }
     public void Cancels(View view) {
         setResult(RESULT_CANCELED);
@@ -63,23 +85,22 @@ public class addPhoto extends AppCompatActivity implements  View.OnClickListener
     }
     public void delete(View view){
         if(!album.photoList.isEmpty()) {
-            Toast.makeText(getApplicationContext(), "hi", Toast.LENGTH_LONG).show();
             album.deletePhoto(album.getPhotoList().get(index));
-            if (index - 1 > 0) {
+            if (index - 1 >= 0) {
                 index -= 1;
+                size--;
 
                 imageToUpload.setImageURI(album.getPhotoList().get(index).getImage());
             } else {
                 imageToUpload.setImageURI(Uri.EMPTY);
             }
 
-
         }
         else{
-            Toast.makeText(getApplicationContext(), "empty", Toast.LENGTH_LONG).show();
+            Toast.makeText(getApplicationContext(),album.photoList.size() + "", Toast.LENGTH_LONG).show();
 
         }
-        Toast.makeText(getApplicationContext(), "WORKS", Toast.LENGTH_LONG).show();
+        Toast.makeText(getApplicationContext(),album.photoList.size() + "", Toast.LENGTH_LONG).show();
 
     }
     @Override
@@ -90,13 +111,10 @@ public class addPhoto extends AppCompatActivity implements  View.OnClickListener
             Photo photo = new Photo("photo1","caption",selectedImage);
             album.addPhoto(photo);
             index++;
+            size++;
             imageToUpload.setImageURI(album.getPhotoList().get(index).getImage());
 
         }
-        else if(requestCode == RESULT_LOAD_IMAGE && resultCode == RESULT_OK && data != null){
-            Uri selectedImage = data.getData();
-            Photo photo = new Photo("temp","caption",selectedImage);
 
-        }
     }
 }
