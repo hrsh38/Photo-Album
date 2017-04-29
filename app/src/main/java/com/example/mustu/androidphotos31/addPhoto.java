@@ -58,8 +58,10 @@ public class addPhoto extends AppCompatActivity implements  View.OnClickListener
 
     public void goLeft(View view){
         if(index - 1 >= 0){
-            index-=1;
+            index -= 1;
             imageToUpload.setImageURI(album.getPhotoList().get(index).getImage());
+            tags.setText(album.getPhotoList().get(index).getTag().toString());
+
         }
         else{
             Toast.makeText(getApplicationContext(),"No more images to the Left!", Toast.LENGTH_LONG).show();
@@ -69,8 +71,10 @@ public class addPhoto extends AppCompatActivity implements  View.OnClickListener
     public void goRight(View view){
         try{
         if(album.getPhotoList().get(index+1)!=null && index!=-1){
-                index += 1;
-                imageToUpload.setImageURI(album.getPhotoList().get(index).getImage());
+            index += 1;
+            imageToUpload.setImageURI(album.getPhotoList().get(index).getImage());
+            tags.setText(album.getPhotoList().get(index).getTag().toString());
+
             Toast.makeText(getApplicationContext(), album.albumName, Toast.LENGTH_LONG).show();
 
         }
@@ -104,6 +108,8 @@ public class addPhoto extends AppCompatActivity implements  View.OnClickListener
                 index--;
                 size--;
                 imageToUpload.setImageURI(album.getPhotoList().get(index).getImage());
+                tags.setText(album.getPhotoList().get(index).getTag().toString());
+
             } else {
                 imageToUpload.setImageURI(Uri.EMPTY);
             }
@@ -124,20 +130,20 @@ public class addPhoto extends AppCompatActivity implements  View.OnClickListener
             album.addPhoto(photo);
             index++;
             imageToUpload.setImageURI(album.getPhotoList().get(index).getImage());
+            tags.setText(album.getPhotoList().get(index).getTag().toString());
             return;
         }
+
+        if(resultCode != RESULT_OK){
+            return;
+        }
+
         Bundle bundle = data.getExtras();
         if (bundle == null) {
             return;
         }
         String name = bundle.getString(addTag.PERSON_TAG);
         String locations = bundle.getString(addTag.LOCATION_TAG);
-
-        if(requestCode != RESULT_OK){
-            return;
-        }
-
-
 
         if(requestCode == ADD_TAG_CODE){
             tag = new Tag(name, locations);
