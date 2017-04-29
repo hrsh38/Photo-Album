@@ -10,7 +10,10 @@
         android:layout_y="0dp"
         android:padding="10dp"
         android:textColor="#000000"
-        android:textSize="10dp" />
+        android:textSize="10dp"
+        android:background="@drawable/bg_key"
+        android:choiceMode="singleChoice"
+        android:listSelector="#666666"/>
 
     <Button
         android:id="@+id/rename"
