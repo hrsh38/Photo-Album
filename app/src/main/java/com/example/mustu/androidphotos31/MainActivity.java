@@ -63,6 +63,7 @@ public class MainActivity extends AppCompatActivity {
                 //showAlbum(position);
                 positions = position;
                 Toast.makeText(getApplicationContext(), "Positions at: " + positions + " was clicked", Toast.LENGTH_SHORT).show();
+                //view.setSelected(true);
             }
         });
     }

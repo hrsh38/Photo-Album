@@ -10,8 +10,7 @@
         android:layout_y="0dp"
         android:padding="10dp"
         android:textColor="#000000"
-        android:textSize="10dp"
-        android:listSelector="@android:color/darker_gray"/>
+        android:textSize="10dp" />
 
     <Button
         android:id="@+id/rename"
@@ -48,11 +47,6 @@
         android:layout_y="388dp"
         android:onClick="delete"
         android:text="Delete Album" />
-    android:id="@+id/button4"
-        android:layout_width="wrap_content"
-        android:layout_height="72dp"
-        android:layout_x="246dp"
-        android:layout_y="267dp"
-        android:text="Rename Album" />
+
 
 </AbsoluteLayout>
