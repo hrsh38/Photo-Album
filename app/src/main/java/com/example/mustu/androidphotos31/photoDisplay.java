@@ -10,19 +10,23 @@ import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import java.util.ArrayList;
+
 /**
  * Created by harsh on 4/29/2017.
  */
 
 public class photoDisplay extends AppCompatActivity implements  View.OnClickListener{
 
+    ArrayList<Photo> photoList = new ArrayList<>();
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.photo_display);
+        Intent i = getIntent();
+        photoList = (ArrayList<Photo>) i.getSerializableExtra("list");
 
         GridView gridview = (GridView) findViewById(R.id.gridview);
-       // gridview.setAdapter(new ImageAdapter);
-
+       gridview.setAdapter(new ImageAdapter(this));
         gridview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView<?> parent, View v,
                                     int position, long id) {

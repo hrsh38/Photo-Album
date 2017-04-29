@@ -20,9 +20,8 @@ public class ImageAdapter extends BaseAdapter {
 
     private Context mContext;
 
-    public void ImageGridAdapter(Context c) {
+    public ImageAdapter(Context c) {
         this.mContext = c;
-
     }
 
     @Override
@@ -48,7 +47,7 @@ public class ImageAdapter extends BaseAdapter {
 
     public View getView(int position, View convertView, ViewGroup parent) {
 
-       // imageUri = PictureGroupActivity.selectedImage;
+        imageUri = null;
 
 
         ImageView imageView;

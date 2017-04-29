@@ -27,6 +27,7 @@ public class addPhoto extends AppCompatActivity implements  View.OnClickListener
     private static final int RESULT_LOAD_IMAGE = 1;
     private static final int RESULT_DELETE_IMAGE = 2;
     private static final int ADD_TAG_CODE = 3;
+    private static final int DISPLAY_CODE = 4;
     ImageView imageToUpload;
     Button add;
     ArrayList<Photo> p = new ArrayList<>();
@@ -77,12 +78,9 @@ public class addPhoto extends AppCompatActivity implements  View.OnClickListener
         }
     }
     public void display(View view){
-        try{
-            imageToUpload.setImageURI(album.getPhotoList().get(0).getImage());
-            index = 0;
-        }catch(Exception e){
-            Toast.makeText(getApplicationContext(),"No photos to display!", Toast.LENGTH_LONG).show();
-        }
+        Intent intent = new Intent(this, photoDisplay.class);
+        intent.putExtra("list", album.photoList);
+        startActivityForResult(intent, DISPLAY_CODE);
     }
     public void Cancels(View view) {
         setResult(RESULT_CANCELED);
