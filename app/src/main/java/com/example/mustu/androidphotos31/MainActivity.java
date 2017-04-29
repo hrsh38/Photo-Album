@@ -1,6 +1,7 @@
 package com.example.mustu.androidphotos31;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -61,7 +62,7 @@ public class MainActivity extends AppCompatActivity {
                 //showAlbum(position);
                 positions = position;
                 Toast.makeText(getApplicationContext(), "Positions at: " + positions + " was clicked", Toast.LENGTH_SHORT).show();
-                //view.setSelected(true);
+                view.setBackgroundColor(Color.LTGRAY);
             }
         });
     }
