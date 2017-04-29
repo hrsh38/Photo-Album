@@ -1,33 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<AbsoluteLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="285dp"
-        android:layout_height="228dp"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="28dp"
-        android:layout_x="56dp"
-        android:layout_y="40dp"
-        android:cropToPadding="false"
-        app:srcCompat="@android:drawable/bottom_bar" />
-
-    <Button
-        android:id="@+id/add"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/remove"
-        android:layout_alignBottom="@+id/remove"
-        android:layout_marginEnd="23dp"
-        android:layout_toStartOf="@+id/button8"
-        android:layout_weight="1"
-        android:layout_x="275dp"
-        android:layout_y="390dp"
-        android:elevation="0dp"
-        android:text="Add" />
 
     <Button
         android:id="@+id/remove"
@@ -43,43 +18,17 @@
         android:layout_centerHorizontal="true" />
 
     <Button
-        android:id="@+id/button7"
-        android:layout_width="wrap_content"
+        android:id="@+id/button14"
+        android:layout_width="48dp"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="59dp"
-        android:layout_marginStart="22dp"
-        android:layout_toEndOf="@+id/button8"
-        android:layout_weight="1"
-        android:layout_x="30dp"
-        android:layout_y="391dp"
-        android:onClick="display"
-        android:text="Display" />
-
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="215dp"
-        android:layout_height="wrap_content"
-        android:layout_x="89dp"
-        android:layout_y="303dp"
-        android:text="TextView"
-        android:visibility="invisible"
-        android:layout_below="@+id/imageView"
-        android:layout_toEndOf="@+id/back"
-        android:layout_marginTop="23dp" />
-
-    <Button
-        android:id="@+id/button8"
-        android:layout_width="107dp"
-        android:layout_height="34dp"
-        android:layout_below="@+id/textView"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="23dp"
-        android:layout_x="143dp"
-        android:layout_y="328dp"
-        android:elevation="24dp"
-        android:onClick="addTag"
-        android:text="Add Tag" />
+        android:layout_alignBaseline="@+id/right"
+        android:layout_alignBottom="@+id/right"
+        android:layout_alignParentStart="true"
+        android:layout_toStartOf="@+id/imageView"
+        android:layout_x="1dp"
+        android:layout_y="131dp"
+        android:onClick="goLeft"
+        android:text="L" />
 
     <Button
         android:id="@+id/back"
@@ -87,38 +36,10 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_alignParentStart="true"
+        android:layout_x="4dp"
+        android:layout_y="463dp"
         android:onClick="Cancels"
         android:text="Back" />
-
-    <TextView
-        android:id="@+id/textView3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginStart="22dp"
-        android:text="Button" />
-
-    <Button
-        android:id="@+id/left"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/right"
-        android:layout_alignBottom="@+id/right"
-        android:layout_alignParentStart="true"
-        android:layout_toStartOf="@+id/imageView"
-        android:onClick="goLeft"
-        android:text="L" />
-
-    <Button
-        android:id="@+id/right"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/imageView"
-        android:layout_marginTop="84dp"
-        android:layout_toEndOf="@+id/imageView"
-        android:onClick="goRight"
-        android:text="R" />
 
     <TextView
         android:id="@+id/tag"
@@ -127,8 +48,89 @@
         android:layout_alignBaseline="@+id/textView"
         android:layout_alignBottom="@+id/textView"
         android:layout_alignStart="@+id/button8"
+        android:layout_x="149dp"
+        android:layout_y="285dp"
         android:text="Person, Location" />
 
+    <Button
+        android:id="@+id/button13"
+        android:layout_width="107dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textView"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="23dp"
+        android:layout_x="34dp"
+        android:layout_y="328dp"
+        android:elevation="24dp"
+        android:onClick="addTag"
+        android:text="Add Tag" />
 
-</RelativeLayout>
+    <Button
+        android:id="@+id/button8"
+        android:layout_width="107dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textView"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="23dp"
+        android:layout_x="254dp"
+        android:layout_y="331dp"
+        android:elevation="24dp"
+        android:onClick="deleteTag"
+        android:text="Delete Tag" />
+
+    <Button
+        android:id="@+id/left"
+        android:layout_width="51dp"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/right"
+        android:layout_alignBottom="@+id/right"
+        android:layout_alignParentStart="true"
+        android:layout_toStartOf="@+id/imageView"
+        android:layout_x="339dp"
+        android:layout_y="133dp"
+        android:onClick="goRight"
+        android:text="R" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="288dp"
+        android:layout_height="228dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="28dp"
+        android:layout_x="51dp"
+        android:layout_y="43dp"
+        android:cropToPadding="false"
+        app:srcCompat="@android:drawable/bottom_bar" />
+
+    <Button
+        android:id="@+id/button7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="59dp"
+        android:layout_marginStart="22dp"
+        android:layout_toEndOf="@+id/button8"
+        android:layout_weight="1"
+        android:layout_x="273dp"
+        android:layout_y="392dp"
+        android:onClick="display"
+        android:text="Display" />
+
+    <Button
+        android:id="@+id/add"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/remove"
+        android:layout_alignBottom="@+id/remove"
+        android:layout_marginEnd="23dp"
+        android:layout_toStartOf="@+id/button8"
+        android:layout_weight="1"
+        android:layout_x="36dp"
+        android:layout_y="389dp"
+        android:elevation="0dp"
+        android:text="Add" />
+
+
+</AbsoluteLayout>
 

@@ -104,12 +104,12 @@ public class addPhoto extends AppCompatActivity implements  View.OnClickListener
     public void delete(View view){
         if(!album.photoList.isEmpty()) {
             album.deletePhoto(index);
+
             if (index - 1 >= 0) {
                 index--;
                 size--;
                 imageToUpload.setImageURI(album.getPhotoList().get(index).getImage());
                 tags.setText(album.getPhotoList().get(index).getTag().toString());
-
             } else {
                 imageToUpload.setImageURI(Uri.EMPTY);
             }
@@ -121,6 +121,11 @@ public class addPhoto extends AppCompatActivity implements  View.OnClickListener
         //Toast.makeText(getApplicationContext(),album.photoList.size() + "", Toast.LENGTH_LONG).show();
 
     }
+    public void deleteTag(View view){
+        album.getPhotoList().get(index).setTag(new Tag("Person", "Location"));
+        tags.setText(album.getPhotoList().get(index).getTag().toString());
+    }
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
