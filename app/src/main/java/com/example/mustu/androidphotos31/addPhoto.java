@@ -156,4 +156,5 @@ public class addPhoto extends AppCompatActivity implements  View.OnClickListener
         Intent intent = new Intent(this, addTag.class);
         startActivityForResult(intent, ADD_TAG_CODE);
     }
+
 }

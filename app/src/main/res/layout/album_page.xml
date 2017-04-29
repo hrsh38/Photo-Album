@@ -127,7 +127,7 @@
         android:layout_alignBaseline="@+id/textView"
         android:layout_alignBottom="@+id/textView"
         android:layout_alignStart="@+id/button8"
-        android:text="Person, Location" />
+        android:text="Person : Location" />
 
 
 </RelativeLayout>
