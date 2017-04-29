@@ -118,7 +118,14 @@ public class addPhoto extends AppCompatActivity implements  View.OnClickListener
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-
+        if (requestCode == RESULT_LOAD_IMAGE && resultCode == RESULT_OK &&data != null){
+            Uri selectedImage = data.getData();
+            Photo photo = new Photo("photo1","caption",selectedImage);
+            album.addPhoto(photo);
+            index++;
+            imageToUpload.setImageURI(album.getPhotoList().get(index).getImage());
+            return;
+        }
         Bundle bundle = data.getExtras();
         if (bundle == null) {
             return;
@@ -130,14 +137,7 @@ public class addPhoto extends AppCompatActivity implements  View.OnClickListener
             return;
         }
 
-        if (requestCode == RESULT_LOAD_IMAGE && resultCode == RESULT_OK &&data != null){
-            Uri selectedImage = data.getData();
-            Photo photo = new Photo("photo1","caption",selectedImage);
-            album.addPhoto(photo);
-            index++;
-            imageToUpload.setImageURI(album.getPhotoList().get(index).getImage());
-            return;
-        }
+
 
         if(requestCode == ADD_TAG_CODE){
             tag = new Tag(name, locations);
