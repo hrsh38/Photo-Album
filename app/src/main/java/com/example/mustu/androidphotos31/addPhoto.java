@@ -76,7 +76,7 @@ public class addPhoto extends AppCompatActivity implements  View.OnClickListener
     public void display(View view){
         try{
             imageToUpload.setImageURI(album.getPhotoList().get(0).getImage());
-            index = -1;
+            index = 0;
         }catch(Exception e){
             Toast.makeText(getApplicationContext(),"No photos to display!", Toast.LENGTH_LONG).show();
         }
