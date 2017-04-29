@@ -27,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
     public static final int OPEN_ALBUM_CODE = 3;
     public static final int DELETE_ALBUM_CODE = 4;
 
-    int positions = 0;
+    int positions = -1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,8 +45,10 @@ public class MainActivity extends AppCompatActivity {
 
     public void OpenAlbum(View view){
         Intent intent = new Intent(this, addPhoto.class);
-        intent.putExtra("album", albums.get(positions));
-        startActivityForResult(intent, OPEN_ALBUM_CODE);
+        if(positions !=-1) {
+            intent.putExtra("album", albums.get(positions));
+            startActivityForResult(intent, OPEN_ALBUM_CODE);
+        }
     }
 
     public void handleIntent(Intent intent){

@@ -66,6 +66,8 @@ public class addPhoto extends AppCompatActivity implements  View.OnClickListener
         if(album.getPhotoList().get(index+1)!=null && index!=-1){
                 index += 1;
                 imageToUpload.setImageURI(album.getPhotoList().get(index).getImage());
+            Toast.makeText(getApplicationContext(), album.albumName, Toast.LENGTH_LONG).show();
+
         }
         else {
             Toast.makeText(getApplicationContext(), "No more images to the Right!", Toast.LENGTH_LONG).show();
@@ -92,7 +94,6 @@ public class addPhoto extends AppCompatActivity implements  View.OnClickListener
             Intent galleryIntent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
             startActivityForResult(galleryIntent,RESULT_LOAD_IMAGE);
         }
-
     }
     public void delete(View view){
         if(!album.photoList.isEmpty()) {
