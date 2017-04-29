@@ -26,7 +26,8 @@ public class Photo implements Serializable{
 	private static final long serialVersionUID = 1634564310973488332L;
 	private String photoName;
 	private String caption;
-	private ArrayList<Tag> tagList;
+	private Tag tag1 = new Tag("Person, ", "Location");
+
 	private String photoAdr;
 	private String dateCreated;
 	private DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
@@ -46,9 +47,9 @@ public class Photo implements Serializable{
 		cal.set(Calendar.MILLISECOND, 0);
 		this.dateCreated = dateFormat.format(cal.getTime()); //sets the time
 		this.caption = caption;
-		tagList = new ArrayList<Tag>();
 		this.caption = caption; //makes a new empty caption list
 		im = img;
+
 	}
 
 	public Uri getImage(){
@@ -58,9 +59,6 @@ public class Photo implements Serializable{
 	 * 
 	 * @return the tag list
 	 */
-	public ArrayList<Tag> getTagList() {
-		return tagList;
-	}
 	/**
 	 * 
 	 * @return the name of the photo
@@ -114,9 +112,7 @@ public class Photo implements Serializable{
 	 * Retrieve total number of tags attached to photo
 	 * @return int
 	 */
-	public int getTotalTags(){
-		return tagList.size();
-	}
+
 	
 	/**
 	 * Set new tag if there is not currently a tag of the same type on the photo
@@ -126,21 +122,23 @@ public class Photo implements Serializable{
 	public void setTag(Tag tag){
 		//Tag tag = new Tag(tagType, tagValue);
 		// Add tag pair if it's not a duplicate or tag list is currently empty
-		if (!isDuplicateTagType(tag) || tagList.size() == 0){
-			tagList.add(tag);
-		}
+		this.tag1 = tag;
 	}
-	
+	public Tag getTag(){
+		return tag1;
+	}
+	public boolean checkTag(){
+		if(tag1.getValue()== null && tag1.getValue() == null){
+			return false;
+		}
+		return true;
+	}
 	/**
 	 * Remove the specified tag type from photo tag list
 	 * @param String: tagType
 	 */
-	public void deleteTag(String tagType){
-		for (int i = 0; i < tagList.size(); i++){
-			String currTagType = tagList.get(i).tagType;
-			if (tagType.equals(currTagType))
-				tagList.remove(i);
-		}
+	public void deleteTag(){
+		tag1 =  null;
 	}
 	
 	/**
@@ -148,12 +146,6 @@ public class Photo implements Serializable{
 	 * @param tag
 	 * @return
 	 */
-	private boolean isDuplicateTagType(Tag tag){
-		for (int i = 0; i < tagList.size(); i++){
-			if (tag.tagType.equalsIgnoreCase(tagList.get(i).tagType))
-				return true;
-		}
-		return false;
-	}
+
 		
 }

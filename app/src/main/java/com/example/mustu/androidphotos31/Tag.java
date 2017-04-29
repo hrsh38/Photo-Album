@@ -30,6 +30,14 @@ public class Tag implements Serializable
 	public String getValue(){
 		return tagValue;
 	}
+
+	public void setTagType(String tagType){
+		this.tagType = tagType;
+	}
+
+	public void setTagValue(String tagValue){
+		this.tagValue = tagValue;
+	}
 	
 	/**
 	 * Return the tag's type. E.g. location, person, etc
