@@ -45,8 +45,6 @@ public class MainActivity extends AppCompatActivity {
 
     public void OpenAlbum(View view){
         Intent intent = new Intent(this, addPhoto.class);
-        ArrayList<Photo> photos = new ArrayList<>();
-        albums.add(new Album("random",photos));
         intent.putExtra("album", albums.get(positions));
         startActivityForResult(intent, OPEN_ALBUM_CODE);
     }
