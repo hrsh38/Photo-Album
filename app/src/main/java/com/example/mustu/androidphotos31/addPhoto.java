@@ -36,6 +36,7 @@ public class addPhoto extends AppCompatActivity implements  View.OnClickListener
     int index = -1;
     int size = 0;
     TextView tags;
+    Tag tag;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -139,7 +140,7 @@ public class addPhoto extends AppCompatActivity implements  View.OnClickListener
         }
 
         if(requestCode == ADD_TAG_CODE){
-            Tag tag = new Tag(name, locations);
+            tag = new Tag(name, locations);
             album.getPhotoList().get(index).setTag(tag);
             tags.setText(tag.toString());
         }
