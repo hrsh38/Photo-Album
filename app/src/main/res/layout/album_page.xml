@@ -72,13 +72,14 @@
         android:id="@+id/button8"
         android:layout_width="107dp"
         android:layout_height="34dp"
+        android:layout_below="@+id/textView"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="23dp"
         android:layout_x="143dp"
         android:layout_y="328dp"
         android:elevation="24dp"
-        android:text="Add Tag"
-        android:layout_below="@+id/textView"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="23dp" />
+        android:onClick="addTag"
+        android:text="Add Tag" />
 
     <Button
         android:id="@+id/back"

@@ -69,17 +69,4 @@ public class AddEditAlbum extends AppCompatActivity {
         setResult(RESULT_OK, intent);
         finish();
     }
-
-    public void deleteItem(View view){
-        String name = input.getText().toString();
-        Bundle bundle = new Bundle();
-        bundle.putString(ALBUM_NAME, name);
-        bundle.putInt(ALBUM_INDEX, albumIndex);
-        Intent intent = new Intent();
-        intent.putExtras(bundle);
-
-        setResult(RESULT_OK, intent);
-        finish();
-    }
-
 }

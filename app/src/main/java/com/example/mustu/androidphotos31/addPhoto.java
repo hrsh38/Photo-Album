@@ -26,6 +26,7 @@ import static com.example.mustu.androidphotos31.R.drawable.no;
 public class addPhoto extends AppCompatActivity implements  View.OnClickListener{
     private static final int RESULT_LOAD_IMAGE = 1;
     private static final int RESULT_DELETE_IMAGE = 2;
+    private static final int ADD_TAG_CODE = 3;
     ImageView imageToUpload;
     Button add;
     ArrayList<Photo> p = new ArrayList<>();
@@ -115,6 +116,11 @@ public class addPhoto extends AppCompatActivity implements  View.OnClickListener
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+
+        if(requestCode != RESULT_OK){
+            return;
+        }
+
         if (requestCode == RESULT_LOAD_IMAGE && resultCode == RESULT_OK &&data != null){
             Uri selectedImage = data.getData();
             Photo photo = new Photo("photo1","caption",selectedImage);
@@ -123,5 +129,21 @@ public class addPhoto extends AppCompatActivity implements  View.OnClickListener
             imageToUpload.setImageURI(album.getPhotoList().get(index).getImage());
 
         }
+
+        Bundle bundle = data.getExtras();
+        if (bundle == null) {
+            return;
+        }
+        String name = bundle.getString(addTag.PERSON_TAG);
+        String locations = bundle.getString(addTag.LOCATION_TAG);
+
+        if(requestCode == ADD_TAG_CODE){
+            Tag tag = new Tag(name, locations);
+        }
+    }
+
+    public void addTag(View view){
+        Intent intent = new Intent(this, addTag.class);
+        startActivityForResult(intent, ADD_TAG_CODE);
     }
 }
