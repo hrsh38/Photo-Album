@@ -14,6 +14,7 @@ import android.widget.Toast;
 
 
 import java.util.ArrayList;
+import java.util.concurrent.ExecutionException;
 
 import static com.example.mustu.androidphotos31.R.drawable.no;
 
@@ -26,7 +27,7 @@ public class addPhoto extends AppCompatActivity implements  View.OnClickListener
     private static final int RESULT_LOAD_IMAGE = 1;
     private static final int RESULT_DELETE_IMAGE = 2;
     ImageView imageToUpload;
-    Button add, remove;
+    Button add;
     ArrayList<Photo> p = new ArrayList<>();
     Album album = new Album("hi",p);
     int index = -1;
@@ -48,8 +49,6 @@ public class addPhoto extends AppCompatActivity implements  View.OnClickListener
         imageToUpload.setOnClickListener(this);
         add.setOnClickListener(this);
         //remove.setOnClickListener(this);
-
-
     }
 
     public void goLeft(View view){
@@ -63,18 +62,30 @@ public class addPhoto extends AppCompatActivity implements  View.OnClickListener
     }
 
     public void goRight(View view){
-        if(index-1<album.getPhotoList().size()-1 && index-1!=-1){
+        try{
+        if(album.getPhotoList().get(index+1)!=null && index!=-1){
                 index += 1;
                 imageToUpload.setImageURI(album.getPhotoList().get(index).getImage());
         }
-        else{
+        else {
+            Toast.makeText(getApplicationContext(), "No more images to the Right!", Toast.LENGTH_LONG).show();
+        }}catch(Exception e){
             Toast.makeText(getApplicationContext(),"No more images to the Right!", Toast.LENGTH_LONG).show();
+        }
+    }
+    public void display(View view){
+        try{
+            imageToUpload.setImageURI(album.getPhotoList().get(0).getImage());
+            index = -1;
+        }catch(Exception e){
+            Toast.makeText(getApplicationContext(),"No photos to display!", Toast.LENGTH_LONG).show();
         }
     }
     public void Cancels(View view) {
         setResult(RESULT_CANCELED);
         finish();   //Returns to previous page on call stack
     }
+
     @Override
     public void onClick(View view) {
         if(view.getId() == R.id.add){
@@ -85,22 +96,20 @@ public class addPhoto extends AppCompatActivity implements  View.OnClickListener
     }
     public void delete(View view){
         if(!album.photoList.isEmpty()) {
-            album.deletePhoto(album.getPhotoList().get(index));
+            album.deletePhoto(index);
             if (index - 1 >= 0) {
-                index -= 1;
+                index--;
                 size--;
-
                 imageToUpload.setImageURI(album.getPhotoList().get(index).getImage());
             } else {
                 imageToUpload.setImageURI(Uri.EMPTY);
             }
-
         }
         else{
             Toast.makeText(getApplicationContext(),album.photoList.size() + "", Toast.LENGTH_LONG).show();
 
         }
-        Toast.makeText(getApplicationContext(),album.photoList.size() + "", Toast.LENGTH_LONG).show();
+        //Toast.makeText(getApplicationContext(),album.photoList.size() + "", Toast.LENGTH_LONG).show();
 
     }
     @Override
@@ -111,10 +120,8 @@ public class addPhoto extends AppCompatActivity implements  View.OnClickListener
             Photo photo = new Photo("photo1","caption",selectedImage);
             album.addPhoto(photo);
             index++;
-            size++;
             imageToUpload.setImageURI(album.getPhotoList().get(index).getImage());
 
         }
-
     }
 }
