@@ -98,9 +98,7 @@ public class MainActivity extends AppCompatActivity {
             albums.add(new Album(name, photos));
             //Toast.makeText(getApplicationContext(), positions, Toast.LENGTH_LONG).show();
         }
-        else if (requestCode == DELETE_ALBUM_CODE){
-            albums.remove(index);
-        }
+
         else if(requestCode == OPEN_ALBUM_CODE){
 
         }
