@@ -8,6 +8,9 @@ import android.widget.BaseAdapter;
 import android.widget.GridView;
 import android.widget.ImageView;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Created by harsh on 4/29/2017.
  */
@@ -16,12 +19,13 @@ public class ImageAdapter extends BaseAdapter {
 
 
     public Uri imageUri;
-
+    ArrayList<Photo> photo = new ArrayList<>();
 
     private Context mContext;
 
-    public ImageAdapter(Context c) {
+    public ImageAdapter(Context c, ArrayList<Photo> photo) {
         this.mContext = c;
+        this.photo = photo;
     }
 
     @Override
@@ -47,7 +51,7 @@ public class ImageAdapter extends BaseAdapter {
 
     public View getView(int position, View convertView, ViewGroup parent) {
 
-        imageUri = null;
+        imageUri = photo.get(position).getImage();
 
 
         ImageView imageView;

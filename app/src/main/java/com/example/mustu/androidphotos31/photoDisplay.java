@@ -24,9 +24,8 @@ public class photoDisplay extends AppCompatActivity implements  View.OnClickList
         setContentView(R.layout.photo_display);
         Intent i = getIntent();
         photoList = (ArrayList<Photo>) i.getSerializableExtra("list");
-
         GridView gridview = (GridView) findViewById(R.id.gridview);
-       gridview.setAdapter(new ImageAdapter(this));
+        gridview.setAdapter(new ImageAdapter(this,photoList));
         gridview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView<?> parent, View v,
                                     int position, long id) {
