@@ -53,6 +53,7 @@
         android:layout_weight="1"
         android:layout_x="30dp"
         android:layout_y="391dp"
+        android:onClick="display"
         android:text="Display" />
 
     <TextView
