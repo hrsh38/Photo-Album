@@ -10,6 +10,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 
@@ -33,7 +34,7 @@ public class addPhoto extends AppCompatActivity implements  View.OnClickListener
     Album album = new Album("hi",p);
     int index = -1;
     int size = 0;
-
+    TextView tags;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +46,7 @@ public class addPhoto extends AppCompatActivity implements  View.OnClickListener
         //remove = (Button) findViewById(R.id.remove);
 
         add = (Button) findViewById(R.id.add);
+        tags = (TextView) findViewById(R.id.tag);
 
 
         imageToUpload.setOnClickListener(this);
@@ -118,6 +120,13 @@ public class addPhoto extends AppCompatActivity implements  View.OnClickListener
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
+        Bundle bundle = data.getExtras();
+        if (bundle == null) {
+            return;
+        }
+        String name = bundle.getString(addTag.PERSON_TAG);
+        String locations = bundle.getString(addTag.LOCATION_TAG);
+
         if(requestCode != RESULT_OK){
             return;
         }
@@ -128,18 +137,13 @@ public class addPhoto extends AppCompatActivity implements  View.OnClickListener
             album.addPhoto(photo);
             index++;
             imageToUpload.setImageURI(album.getPhotoList().get(index).getImage());
-
-        }
-
-        Bundle bundle = data.getExtras();
-        if (bundle == null) {
             return;
         }
-        String name = bundle.getString(addTag.PERSON_TAG);
-        String locations = bundle.getString(addTag.LOCATION_TAG);
 
         if(requestCode == ADD_TAG_CODE){
             Tag tag = new Tag(name, locations);
+            album.getPhotoList().get(index).setTag(tag);
+            tags.setText(tag.toString());
         }
     }
 

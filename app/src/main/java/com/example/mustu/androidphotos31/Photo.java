@@ -123,8 +123,8 @@ public class Photo implements Serializable{
 	 * @param tagType
 	 * @param tagValue
 	 */
-	public void setTag(String tagType, String tagValue){
-		Tag tag = new Tag(tagType, tagValue);
+	public void setTag(Tag tag){
+		//Tag tag = new Tag(tagType, tagValue);
 		// Add tag pair if it's not a duplicate or tag list is currently empty
 		if (!isDuplicateTagType(tag) || tagList.size() == 0){
 			tagList.add(tag);
