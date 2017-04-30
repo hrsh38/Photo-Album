@@ -30,7 +30,6 @@ public class addTag extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.tag);
-
         save = (Button) findViewById(R.id.save);
         cancel = (Button) findViewById(R.id.cancel);
         person = (EditText) findViewById(R.id.person);

@@ -29,6 +29,7 @@ public class addPhoto extends AppCompatActivity implements  View.OnClickListener
     private static final int RESULT_DELETE_IMAGE = 2;
     private static final int ADD_TAG_CODE = 3;
     private static final int DISPLAY_CODE = 4;
+    private static final int SEARCH_TAG_CODE = 5;
     ImageView imageToUpload;
     Button add;
     ArrayList<Photo> p = new ArrayList<>();
@@ -170,7 +171,12 @@ public class addPhoto extends AppCompatActivity implements  View.OnClickListener
         }catch(Exception e){
             Toast.makeText(getApplicationContext(),"No Tag Has Been Set Yet", Toast.LENGTH_LONG).show();
         }
-
+    }
+    public void searchTag(View view){
+        Bundle bundle = new Bundle();
+        Intent i = new Intent(this, SearchTag.class);
+        i.putExtra("data", new DataWrapper(p));
+        startActivity(i);
     }
 
 }
