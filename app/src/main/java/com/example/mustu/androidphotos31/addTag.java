@@ -45,6 +45,14 @@ public class addTag extends AppCompatActivity {
     public void saveTag(View view){
         String name = person.getText().toString();
         String locations = location.getText().toString();
+        if(name == null || name.length()==0 || locations == null || locations.length() ==0){
+            Bundle bundle = new Bundle();
+            bundle.putString(AlbumDialog.MESSAGE_KEY, "Both Field Are Required");
+            DialogFragment newFragment = new AlbumDialog();
+            newFragment.setArguments(bundle);
+            newFragment.show(getFragmentManager(), "badfields");
+            return;
+        }
         Bundle bundle = new Bundle();
         bundle.putString(PERSON_TAG, name);
         bundle.putString(LOCATION_TAG, locations);

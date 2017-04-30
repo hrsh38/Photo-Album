@@ -36,7 +36,16 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         listView = (ListView) findViewById(R.id.album_list);
-        handleIntent(getIntent());
+        //handleIntent(getIntent());
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                //showAlbum(position);
+                positions = position;
+                Toast.makeText(getApplicationContext(), "Positions at: " + positions + " was clicked", Toast.LENGTH_SHORT).show();
+                view.setBackgroundColor(Color.LTGRAY);
+            }
+        });
     }
 
     public void Create(View view){
@@ -51,28 +60,21 @@ public class MainActivity extends AppCompatActivity {
             startActivityForResult(intent, OPEN_ALBUM_CODE);
         }
     }
-
+    /*
     public void handleIntent(Intent intent){
         showAlbumList();
     }
 
     private void showAlbumList(){
         listView.setAdapter(new ArrayAdapter<Album>(this, R.layout.album, albums));
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                //showAlbum(position);
-                positions = position;
-                Toast.makeText(getApplicationContext(), "Positions at: " + positions + " was clicked", Toast.LENGTH_SHORT).show();
-                view.setBackgroundColor(Color.LTGRAY);
-            }
-        });
+
     }
 
     protected void onNewIntent(Intent intent) {
         setIntent(intent);
         handleIntent(intent);
     }
+    */
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent intent) {
@@ -100,9 +102,6 @@ public class MainActivity extends AppCompatActivity {
             //Toast.makeText(getApplicationContext(), positions, Toast.LENGTH_LONG).show();
         }
 
-        else if(requestCode == OPEN_ALBUM_CODE){
-
-        }
         adapter = new ArrayAdapter<Album>(this, R.layout.album, albums);
         listView.setAdapter(adapter);
         adapter.notifyDataSetChanged();
