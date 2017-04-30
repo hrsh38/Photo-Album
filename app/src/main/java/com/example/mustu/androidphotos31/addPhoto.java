@@ -121,10 +121,6 @@ public class addPhoto extends AppCompatActivity implements  View.OnClickListener
         //Toast.makeText(getApplicationContext(),album.photoList.size() + "", Toast.LENGTH_LONG).show();
 
     }
-    public void deleteTag(View view){
-        album.getPhotoList().get(index).setTag(new Tag("Person", "Location"));
-        tags.setText(album.getPhotoList().get(index).getTag().toString());
-    }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -160,6 +156,10 @@ public class addPhoto extends AppCompatActivity implements  View.OnClickListener
     public void addTag(View view){
         Intent intent = new Intent(this, addTag.class);
         startActivityForResult(intent, ADD_TAG_CODE);
+    }
+    public void deleteTag(View view){
+        album.getPhotoList().get(index).setTag(new Tag("Person", "Location"));
+        tags.setText(album.getPhotoList().get(index).getTag().toString());
     }
 
 }

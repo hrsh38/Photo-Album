@@ -127,6 +127,7 @@ public class Photo implements Serializable{
 	public Tag getTag(){
 		return tag1;
 	}
+
 	public boolean checkTag(){
 		if(tag1.getValue()== null && tag1.getValue() == null){
 			return false;
