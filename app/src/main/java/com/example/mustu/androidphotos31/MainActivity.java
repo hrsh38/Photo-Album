@@ -101,7 +101,11 @@ public class MainActivity extends AppCompatActivity {
             albums.add(new Album(name, photos));
             //Toast.makeText(getApplicationContext(), positions, Toast.LENGTH_LONG).show();
         }
-
+        else if (requestCode == OPEN_ALBUM_CODE){
+            Intent i = getIntent();
+            Album a =  (Album)i.getSerializableExtra("album");
+            albums.set(positions, a);
+        }
         adapter = new ArrayAdapter<Album>(this, R.layout.album, albums);
         listView.setAdapter(adapter);
         adapter.notifyDataSetChanged();

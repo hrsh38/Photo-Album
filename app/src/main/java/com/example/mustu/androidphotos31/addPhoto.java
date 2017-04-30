@@ -90,7 +90,9 @@ public class addPhoto extends AppCompatActivity implements  View.OnClickListener
         startActivityForResult(intent, DISPLAY_CODE);
     }
     public void Cancels(View view) {
-        setResult(RESULT_CANCELED);
+        Intent i = new Intent();
+        i.putExtra("album", album);
+        setResult(RESULT_OK, i);
         finish();   //Returns to previous page on call stack
     }
 
@@ -101,27 +103,31 @@ public class addPhoto extends AppCompatActivity implements  View.OnClickListener
             startActivityForResult(galleryIntent,RESULT_LOAD_IMAGE);
         }
     }
-    public void delete(View view){
-        if(!album.photoList.isEmpty()) {
+    public void delete(View view) {
+        size = album.photoList.size();
+        if (!album.photoList.isEmpty()) {
             album.deletePhoto(index);
-
-            if (index - 1 >= 0) {
-                index--;
-                size--;
+            size--;
+            if (index - 1 >= 0 || size != 0) {
+                if(index-1 >=0)
+                    index--;
+                else
+                    index = 0;
                 imageToUpload.setImageURI(album.getPhotoList().get(index).getImage());
                 tags.setText(album.getPhotoList().get(index).getTag().toString());
             } else {
                 imageToUpload.setImageURI(Uri.EMPTY);
+                Toast.makeText(getApplicationContext(), album.photoList.size() + "," + index, Toast.LENGTH_LONG).show();
+
             }
-        }
-        else{
-            Toast.makeText(getApplicationContext(),album.photoList.size() + "", Toast.LENGTH_LONG).show();
+        } else {
+            Toast.makeText(getApplicationContext(), "No photos to delete", Toast.LENGTH_LONG).show();
 
         }
+
         //Toast.makeText(getApplicationContext(),album.photoList.size() + "", Toast.LENGTH_LONG).show();
 
     }
-
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
