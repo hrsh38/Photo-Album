@@ -51,11 +51,16 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void OpenAlbum(View view){
-        Intent intent = new Intent(this, addPhoto.class);
-        if(positions !=-1) {
-            intent.putExtra("album", albums.get(positions));
-            startActivityForResult(intent, OPEN_ALBUM_CODE);
+        try{
+            Intent intent = new Intent(this, addPhoto.class);
+            if(positions !=-1) {
+                intent.putExtra("album", albums.get(positions));
+                startActivityForResult(intent, OPEN_ALBUM_CODE);
+            }
+        }catch(Exception e){
+            Toast.makeText(getApplicationContext(), "No album was selected to be opened", Toast.LENGTH_SHORT).show();
         }
+
     }
 
     @Override
@@ -94,19 +99,28 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void rename(View view){
-        Bundle bundle = new Bundle();
-        Album album = albums.get(positions);
-        bundle.putInt(AddEditAlbum.ALBUM_INDEX, positions);
-        bundle.putString(AddEditAlbum.ALBUM_NAME, album.albumName);
-        Intent intent = new Intent(this, AddEditAlbum.class);
-        intent.putExtras(bundle);
-        startActivityForResult(intent, EDIT_ALBUM_CODE);
+        try{
+            Bundle bundle = new Bundle();
+            Album album = albums.get(positions);
+            bundle.putInt(AddEditAlbum.ALBUM_INDEX, positions);
+            bundle.putString(AddEditAlbum.ALBUM_NAME, album.albumName);
+            Intent intent = new Intent(this, AddEditAlbum.class);
+            intent.putExtras(bundle);
+            startActivityForResult(intent, EDIT_ALBUM_CODE);
+        }catch (Exception e){
+            Toast.makeText(getApplicationContext(), "No album was selected to be renamed", Toast.LENGTH_SHORT).show();
+        }
+
     }
 
     public void delete(View view){
-        albums.remove(positions);
-        adapter = new ArrayAdapter<Album>(this, R.layout.album, albums);
-        listView.setAdapter(adapter);
-        adapter.notifyDataSetChanged();
+        try{
+            albums.remove(positions);
+            adapter = new ArrayAdapter<Album>(this, R.layout.album, albums);
+            listView.setAdapter(adapter);
+            adapter.notifyDataSetChanged();
+        }catch(Exception e){
+            Toast.makeText(getApplicationContext(), "No album was selected to be deleted", Toast.LENGTH_SHORT).show();
+        }
     }
 }
