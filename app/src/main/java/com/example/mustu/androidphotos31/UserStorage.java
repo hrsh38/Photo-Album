@@ -14,24 +14,24 @@ import java.util.ArrayList;
 public class UserStorage implements Serializable {
 	
 	private static final long serialVersionUID = 7292986950430510446L;	//To ensure the data is returend the same way its saved
-	ArrayList<User> userSavingList;
+	ArrayList<Album> albumSavingList;
 	public static final String storeDir = "data";
 	public static final String storeFile = "users.dat";
 		
 	public UserStorage(){
-		userSavingList = new ArrayList<User>();
+		albumSavingList = new ArrayList<Album>();
 	}
 	
-	public void addUserToSavedList(User p){
-		userSavingList.add(p);
+	public void addUserToSavedList(Album p){
+		albumSavingList.add(p);
 	}
 	
 	public int getUserStorageListSize(){
-		return userSavingList.size();
+		return albumSavingList.size();
 	}
 	
-	public ArrayList<User> getSavedList(){
-		return userSavingList;
+	public ArrayList<Album> getSavedList(){
+		return albumSavingList;
 	}
 
 	public static void write(UserStorage user)throws IOException{

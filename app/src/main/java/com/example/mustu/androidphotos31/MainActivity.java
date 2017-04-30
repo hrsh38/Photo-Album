@@ -26,26 +26,23 @@ public class MainActivity extends AppCompatActivity {
     public static final int EDIT_ALBUM_CODE = 1;
     public static final int ADD_ALBUM_CODE = 2;
     public static final int OPEN_ALBUM_CODE = 3;
-    public static final int DELETE_ALBUM_CODE = 4;
-
+    public static final int SERIALIZABLE = 4;
     int positions = -1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
         listView = (ListView) findViewById(R.id.album_list);
-        //handleIntent(getIntent());
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                //showAlbum(position);
                 positions = position;
                 Toast.makeText(getApplicationContext(), "Positions at: " + positions + " was clicked", Toast.LENGTH_SHORT).show();
                 view.setBackgroundColor(Color.LTGRAY);
             }
         });
+
     }
 
     public void Create(View view){
@@ -60,21 +57,6 @@ public class MainActivity extends AppCompatActivity {
             startActivityForResult(intent, OPEN_ALBUM_CODE);
         }
     }
-    /*
-    public void handleIntent(Intent intent){
-        showAlbumList();
-    }
-
-    private void showAlbumList(){
-        listView.setAdapter(new ArrayAdapter<Album>(this, R.layout.album, albums));
-
-    }
-
-    protected void onNewIntent(Intent intent) {
-        setIntent(intent);
-        handleIntent(intent);
-    }
-    */
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent intent) {
@@ -106,18 +88,6 @@ public class MainActivity extends AppCompatActivity {
         listView.setAdapter(adapter);
         adapter.notifyDataSetChanged();
     }
-
-    /*
-    private void showAlbum(int position){
-        Bundle bundle = new Bundle();
-        Album album = albums.get(position);
-        bundle.putInt(AddEditAlbum.ALBUM_INDEX, position);
-        bundle.putString(AddEditAlbum.ALBUM_NAME, album.albumName);
-        Intent intent = new Intent(this, AddEditAlbum.class);
-        intent.putExtras(bundle);
-        startActivityForResult(intent, EDIT_ALBUM_CODE);
-    }
-    */
 
     public void rename(View view){
         Bundle bundle = new Bundle();
