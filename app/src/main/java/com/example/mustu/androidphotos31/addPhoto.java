@@ -46,6 +46,7 @@ public class addPhoto extends AppCompatActivity implements  View.OnClickListener
     Album album = new Album("hi",p);
     int index = -1;
     int size = 0;
+    int count = 0;
     TextView tags;
     Tag tag;
 
@@ -190,7 +191,8 @@ public class addPhoto extends AppCompatActivity implements  View.OnClickListener
                         e.printStackTrace();
                     }
                     Bitmap bitmap = BitmapFactory.decodeStream(image_stream);
-                    Photo photo = new Photo("photo1", "caption", bitmap);
+                    count++;
+                    Photo photo = new Photo("photo "+count, "caption", bitmap);
                     album.addPhoto(photo);
                     index++;
                     imageToUpload.setImageBitmap(album.getPhotoList().get(index).getImage());
@@ -259,6 +261,7 @@ public class addPhoto extends AppCompatActivity implements  View.OnClickListener
             Toast.makeText(getApplicationContext(),"No Tag Has Been Set Yet", Toast.LENGTH_LONG).show();
         }
     }
+
     public void searchTag(View view){
         Bundle bundle = new Bundle();
         Intent i = new Intent(this, SearchTag.class);

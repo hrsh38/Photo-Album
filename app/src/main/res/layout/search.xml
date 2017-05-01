@@ -1,25 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<AbsoluteLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
 
-    <RelativeLayout
-        android:layout_width="fill_parent"
+    tools:context="com.example.mustu.androidphotos31.SearchTag">
+
+
+    <ListView
+        android:id="@+id/lstView"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:layout_width="match_parent"
+        android:divider="#806326"
+        android:dividerHeight="1dp"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="54dp"
+        android:layout_alignParentEnd="true"
+        android:layout_y="60dp" />
 
-        <android.support.v7.widget.SearchView
-            android:id="@+id/search"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:clickable="true" />
+    <android.support.v7.widget.SearchView
+        android:id="@+id/searchView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/lstView"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentTop="true"
+        android:layout_y="0dp"
+        android:clickable="true" />"
+    android:clickable="true" />
 
-        <ListView
-            android:id="@+id/list_view"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_below="@+id/search" />
-
-    </RelativeLayout>
-
-</layout>
+</AbsoluteLayout>
