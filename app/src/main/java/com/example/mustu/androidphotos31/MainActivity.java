@@ -37,7 +37,7 @@ public class MainActivity extends AppCompatActivity {
     public static final int ADD_ALBUM_CODE = 2;
     public static final int OPEN_ALBUM_CODE = 3;
     public static final int SERIALIZABLE = 4;
-    int positions = -1;
+    public static int positions = -1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
