@@ -119,7 +119,10 @@ public class MainActivity extends AppCompatActivity {
            default:{
                break;
            }
+
        }
+        positions = -1;
+
         adapter = new ArrayAdapter<Album>(this, R.layout.album, albums);
         listView.setAdapter(adapter);
         adapter.notifyDataSetChanged();
