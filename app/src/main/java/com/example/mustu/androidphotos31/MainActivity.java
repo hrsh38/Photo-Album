@@ -170,48 +170,25 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-
-
-    /*
-    private void writeToFile(String data,Context context) {
+    public void writeToFile() {
         try {
-            OutputStreamWriter outputStreamWriter = new OutputStreamWriter(context.openFileOutput("config.txt", Context.MODE_PRIVATE));
-            outputStreamWriter.write(data);
-            outputStreamWriter.close();
+            FileOutputStream fOut = openFileOutput("write.txt",MODE_PRIVATE);
+            String s = "";
+            for(Album a: albums){
+                s = a.albumName;
+                fOut.write(s.getBytes());
+            }
+            fOut.close();
         }
         catch (IOException e) {
             Log.e("Exception", "File write failed: " + e.toString());
         }
     }
-
-    private String readFromFile(Context context) {
-
-        String ret = "";
-
-        try {
-            InputStream inputStream = context.openFileInput("config.txt");
-
-            if ( inputStream != null ) {
-                InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
-                BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
-                String receiveString = "";
-                StringBuilder stringBuilder = new StringBuilder();
-
-                while ( (receiveString = bufferedReader.readLine()) != null ) {
-                    stringBuilder.append(receiveString);
-                }
-
-                inputStream.close();
-                ret = stringBuilder.toString();
-            }
-        }
-        catch (FileNotFoundException e) {
-            Log.e("login activity", "File not found: " + e.toString());
-        } catch (IOException e) {
-            Log.e("login activity", "Can not read file: " + e.toString());
-        }
-
-        return ret;
+    /*
+    private void readFromFile() {
+        int c = 0;
+        String temp = "";
+        FileInputStream fin = openFileInput("write.txt");
     }
     */
 }
