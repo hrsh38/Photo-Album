@@ -265,7 +265,6 @@ public class addPhoto extends AppCompatActivity implements  View.OnClickListener
     public void searchTag(View view){
         Bundle bundle = new Bundle();
         Intent i = new Intent(this, SearchTag.class);
-        //i.putExtra("data", new DataWrapper(p));
         startActivityForResult(i, SEARCH_TAG_CODE);
     }
 
