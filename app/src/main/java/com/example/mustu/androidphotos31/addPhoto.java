@@ -18,6 +18,7 @@ import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.concurrent.ExecutionException;
 
+import static com.example.mustu.androidphotos31.MainActivity.albums;
 import static com.example.mustu.androidphotos31.R.drawable.no;
 
 
@@ -33,7 +34,7 @@ public class addPhoto extends AppCompatActivity implements  View.OnClickListener
     private static final int SEARCH_TAG_CODE = 5;
     ImageView imageToUpload;
     Button add;
-    static ArrayList<Photo> p;
+    static ArrayList<Photo> p = new ArrayList<>();
     static Album album = new Album("hi",p);
     static int index = -1;
     int size = 0;
@@ -45,8 +46,7 @@ public class addPhoto extends AppCompatActivity implements  View.OnClickListener
         super.onCreate(savedInstanceState);
         setContentView(R.layout.album_page);
         Intent i = getIntent();
-        p = i.getParcelableArrayListExtra("a");
-        album = new Album(i.getStringExtra("b"), p);
+        album = albums.get(i.getIntExtra("k", 0));
         imageToUpload = (ImageView) findViewById(R.id.imageView);
         //remove = (Button) findViewById(R.id.remove);
         Toast.makeText(getApplicationContext(), album.getPhotoCount() + album.getAlbumName(), Toast.LENGTH_LONG).show();
@@ -89,6 +89,13 @@ public class addPhoto extends AppCompatActivity implements  View.OnClickListener
         }
     }
     public void display(View view){
+        if (!album.photoList.isEmpty()) {
+            imageToUpload.setImageURI(album.getPhotoList().get(index).getImage());
+        }
+        else{
+            Toast.makeText(getApplicationContext(),"No images!", Toast.LENGTH_LONG).show();
+
+        }
         /*Intent intent = new Intent(this, photoDisplay.class);
         intent.putExtra("list", album.photoList);
         startActivityForResult(intent, DISPLAY_CODE);*/
