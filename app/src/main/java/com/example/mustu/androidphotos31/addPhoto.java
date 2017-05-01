@@ -96,7 +96,7 @@ public class addPhoto extends AppCompatActivity implements  View.OnClickListener
         }
     }
     public void display(View view){
-        if (!album.photoList.isEmpty()) {
+       /* if (!album.photoList.isEmpty()) {
             index = 0;
             imageToUpload.setImageBitmap(album.getPhotoList().get(index).getImage());
 
@@ -105,11 +105,10 @@ public class addPhoto extends AppCompatActivity implements  View.OnClickListener
         else{
             Toast.makeText(getApplicationContext(),"No images!", Toast.LENGTH_LONG).show();
 
-        }
-        /*Intent intent = new Intent(this, photoDisplay.class);
-        intent.putExtra("list", album.photoList);
+        }*/
+        Intent intent = new Intent(this, photoDisplay.class);
         startActivityForResult(intent, DISPLAY_CODE);
-        */
+
     }
     public void Cancels(View view) {
         Intent i = new Intent();
@@ -153,46 +152,50 @@ public class addPhoto extends AppCompatActivity implements  View.OnClickListener
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == RESULT_LOAD_IMAGE && resultCode == RESULT_OK &&data != null){
-            Uri IMAGE_URI = data.getData();
-            InputStream image_stream = null;
-            try {
-                image_stream = getContentResolver().openInputStream(IMAGE_URI);
-            } catch (FileNotFoundException e) {
-                e.printStackTrace();
-            }
-            Bitmap bitmap= BitmapFactory.decodeStream(image_stream );
-            Photo photo = new Photo("photo1","caption",bitmap);
-            album.addPhoto(photo);
-            index++;
-            imageToUpload.setImageBitmap(album.getPhotoList().get(index).getImage());
-            tags.setText(album.getPhotoList().get(index).getTag().toString());
-            return;
-        }
-
-        if(resultCode != RESULT_OK){
-            return;
-        }
-
-        Bundle bundle = data.getExtras();
-        if (bundle == null) {
-            return;
-        }
-        String name = bundle.getString(addTag.PERSON_TAG);
-        String locations = bundle.getString(addTag.LOCATION_TAG);
-
-        if(requestCode == ADD_TAG_CODE){
-            try{
-                tag = new Tag(name, locations);
-                album.getPhotoList().get(index).setTag(tag);
-                tags.setText(tag.toString());
-            }catch(Exception e){
-                Toast.makeText(getApplicationContext(),"Must have photo for tag to work", Toast.LENGTH_LONG).show();
-                setResult(RESULT_CANCELED);
-                finish();
+        switch(requestCode) {
+            case(RESULT_LOAD_IMAGE): {
+                if(resultCode == RESULT_OK && data != null){
+                    Uri IMAGE_URI = data.getData() ;
+                    InputStream image_stream = null;
+                    try {
+                        image_stream = getContentResolver().openInputStream(IMAGE_URI);
+                    } catch (FileNotFoundException e) {
+                        e.printStackTrace();
+                    }
+                    Bitmap bitmap = BitmapFactory.decodeStream(image_stream);
+                    Photo photo = new Photo("photo1", "caption", bitmap);
+                    album.addPhoto(photo);
+                    index++;
+                    imageToUpload.setImageBitmap(album.getPhotoList().get(index).getImage());
+                    tags.setText(album.getPhotoList().get(index).getTag().toString());
+                    return;
+                }
             }
 
+            case(ADD_TAG_CODE) :{
+                Bundle bundle = data.getExtras();
+                if (bundle == null) {
+                    return;
+                }
+                String name = bundle.getString(addTag.PERSON_TAG);
+                String locations = bundle.getString(addTag.LOCATION_TAG);
+
+                try {
+                    tag = new Tag(name, locations);
+                    album.getPhotoList().get(index).setTag(tag);
+                    tags.setText(tag.toString());
+                } catch (Exception e) {
+                    Toast.makeText(getApplicationContext(), "Must have photo for tag to work", Toast.LENGTH_LONG).show();
+                    setResult(RESULT_CANCELED);
+                    finish();
+                }
+
+            }
+            case(DISPLAY_CODE):{
+                
+            }
         }
+
     }
 
     public void addTag(View view){

@@ -9,6 +9,7 @@ import android.widget.BaseAdapter;
 import android.widget.GridView;
 import android.widget.ImageView;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,19 +21,19 @@ public class ImageAdapter extends BaseAdapter {
 
 
     public Bitmap imageUri;
-    ArrayList<Photo> photo = new ArrayList<>();
+    Bitmap[] photo;
 
     private Context mContext;
 
-    public ImageAdapter(Context c, ArrayList<Photo> photo) {
-        this.mContext = c;
+    public ImageAdapter(Context c, Bitmap[] photo) {
+        mContext = c;
         this.photo = photo;
     }
 
     @Override
     public int getCount() {
 
-        return 0;
+        return photo.length;
     }
 
     @Override
@@ -51,23 +52,20 @@ public class ImageAdapter extends BaseAdapter {
 
 
     public View getView(int position, View convertView, ViewGroup parent) {
-
-        imageUri = photo.get(position).getImage();
-
-
         ImageView imageView;
+
         if (convertView == null) {
             imageView = new ImageView(mContext);
-            imageView.setLayoutParams(new GridView.LayoutParams(85, 85));
+            imageView.setLayoutParams(new GridView.LayoutParams(200, 200));
             imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
-            imageView.setPadding(8, 8, 8, 8);
-        } else {
+            imageView.setPadding(1, 1, 1, 1);
+        }
+        else
+        {
             imageView = (ImageView) convertView;
         }
-
-        imageView.setImageBitmap(null);
-        imageView.setImageBitmap(imageUri);
-
+        imageView.setImageBitmap(photo[position]);
         return imageView;
     }
+
 }

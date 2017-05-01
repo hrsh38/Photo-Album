@@ -42,16 +42,15 @@ public class SearchTag extends AppCompatActivity{
         Toast.makeText(getApplicationContext(), dw.toString() + "has been passed", Toast.LENGTH_LONG).show();
         */
 
-        Toast.makeText(getApplicationContext(), album.getPhotoList().get(index).getTag().getType(), Toast.LENGTH_LONG).show();
+        //Toast.makeText(getApplicationContext(), album.getPhotoList().get(index).getTag().getType(), Toast.LENGTH_LONG).show();
         //Toast.makeText(getApplicationContext(), album.getPhotoList().get(index-1).getTag().getType(), Toast.LENGTH_LONG).show();
 
         for(Album al:albums){
             for(Photo photo:al.getPhotoList()) {
-                if(photo.getTag().getType().equals("dog")){
+                if(photo.getTag().getType().contains("dog")||photo.getTag().getValue().contains("dog")){
                     list.add(photo);
                 }
             }
-
         }
 
         adapter = new ArrayAdapter<Photo>(this, R.layout.album, list);
