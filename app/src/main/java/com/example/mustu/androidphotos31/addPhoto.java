@@ -199,6 +199,7 @@ public class addPhoto extends AppCompatActivity implements  View.OnClickListener
                     tags.setText(album.getPhotoList().get(index).getTag().toString());
                     return;
                 }
+                break;
             }
 
             case(ADD_TAG_CODE) :{
@@ -221,6 +222,7 @@ public class addPhoto extends AppCompatActivity implements  View.OnClickListener
                     Toast.makeText(getApplicationContext(), "Must have photo for tag to work", Toast.LENGTH_LONG).show();
                     return;
                 }
+                break;
             }
             case(DISPLAY_CODE):{
                 try {
