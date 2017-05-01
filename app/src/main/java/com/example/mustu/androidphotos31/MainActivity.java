@@ -27,26 +27,23 @@ public class MainActivity extends AppCompatActivity {
     public static final int EDIT_ALBUM_CODE = 1;
     public static final int ADD_ALBUM_CODE = 2;
     public static final int OPEN_ALBUM_CODE = 3;
-    public static final int DELETE_ALBUM_CODE = 4;
-
+    public static final int SERIALIZABLE = 4;
     int positions = -1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
         listView = (ListView) findViewById(R.id.album_list);
-        //handleIntent(getIntent());
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                //showAlbum(position);
                 positions = position;
                 Toast.makeText(getApplicationContext(), "Positions at: " + positions + " was clicked", Toast.LENGTH_SHORT).show();
                 view.setBackgroundColor(Color.LTGRAY);
             }
         });
+
     }
 
     public void Create(View view){
@@ -58,27 +55,13 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this, addPhoto.class);
         Bundle b = new Bundle();
         if(positions !=-1) {
-            b.putString("b",albums.get(positions).getAlbumName());
+            b.putString("b", albums.get(positions).getAlbumName());
             b.putParcelableArrayList("a", albums.get(positions).getPhotoList());
             intent.putExtras(b);
             startActivityForResult(intent, OPEN_ALBUM_CODE);
         }
-    }
-    /*
-    public void handleIntent(Intent intent){
-        showAlbumList();
-    }
-
-    private void showAlbumList(){
-        listView.setAdapter(new ArrayAdapter<Album>(this, R.layout.album, albums));
 
     }
-
-    protected void onNewIntent(Intent intent) {
-        setIntent(intent);
-        handleIntent(intent);
-    }
-    */
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent intent) {
@@ -122,32 +105,29 @@ public class MainActivity extends AppCompatActivity {
         adapter.notifyDataSetChanged();
     }
 
-    /*
-    private void showAlbum(int position){
-        Bundle bundle = new Bundle();
-        Album album = albums.get(position);
-        bundle.putInt(AddEditAlbum.ALBUM_INDEX, position);
-        bundle.putString(AddEditAlbum.ALBUM_NAME, album.albumName);
-        Intent intent = new Intent(this, AddEditAlbum.class);
-        intent.putExtras(bundle);
-        startActivityForResult(intent, EDIT_ALBUM_CODE);
-    }
-    */
-
     public void rename(View view){
-        Bundle bundle = new Bundle();
-        Album album = albums.get(positions);
-        bundle.putInt(AddEditAlbum.ALBUM_INDEX, positions);
-        bundle.putString(AddEditAlbum.ALBUM_NAME, album.albumName);
-        Intent intent = new Intent(this, AddEditAlbum.class);
-        intent.putExtras(bundle);
-        startActivityForResult(intent, EDIT_ALBUM_CODE);
+        try{
+            Bundle bundle = new Bundle();
+            Album album = albums.get(positions);
+            bundle.putInt(AddEditAlbum.ALBUM_INDEX, positions);
+            bundle.putString(AddEditAlbum.ALBUM_NAME, album.albumName);
+            Intent intent = new Intent(this, AddEditAlbum.class);
+            intent.putExtras(bundle);
+            startActivityForResult(intent, EDIT_ALBUM_CODE);
+        }catch (Exception e){
+            Toast.makeText(getApplicationContext(), "No album was selected to be renamed", Toast.LENGTH_SHORT).show();
+        }
+
     }
 
     public void delete(View view){
-        albums.remove(positions);
-        adapter = new ArrayAdapter<Album>(this, R.layout.album, albums);
-        listView.setAdapter(adapter);
-        adapter.notifyDataSetChanged();
+        try{
+            albums.remove(positions);
+            adapter = new ArrayAdapter<Album>(this, R.layout.album, albums);
+            listView.setAdapter(adapter);
+            adapter.notifyDataSetChanged();
+        }catch(Exception e){
+            Toast.makeText(getApplicationContext(), "No album was selected to be deleted", Toast.LENGTH_SHORT).show();
+        }
     }
 }

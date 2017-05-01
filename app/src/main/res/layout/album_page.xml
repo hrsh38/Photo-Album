@@ -75,7 +75,7 @@
         android:layout_alignStart="@+id/button8"
         android:layout_x="137dp"
         android:layout_y="285dp"
-        android:text="Person, Location" />
+        android:text="Person : Location" />
 
     <Button
         android:id="@+id/left"
@@ -126,6 +126,15 @@
         android:elevation="24dp"
         android:onClick="deleteTag"
         android:text="Delete Tag" />
+
+    <Button
+        android:id="@+id/button4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_x="275dp"
+        android:layout_y="454dp"
+        android:onClick="searchTag"
+        android:text="Search" />
 
     android:layout_alignBaseline="@+id/remove"
         android:layout_alignBottom="@+id/remove"
