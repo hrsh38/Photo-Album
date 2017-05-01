@@ -132,7 +132,7 @@
         android:layout_height="wrap_content"
         android:layout_x="22dp"
         android:layout_y="463dp"
-        android:onClick="searchTag"
+        android:onClick="Move"
         android:text="Move Photo" />
 
     android:layout_alignBaseline="@+id/remove"

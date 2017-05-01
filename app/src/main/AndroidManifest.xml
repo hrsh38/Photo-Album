@@ -33,6 +33,9 @@
         <activity android:name=".SearchTag" android:parentActivityName=".addPhoto">
             <meta-data android:name="android.support.PARENT_ACTIVITY" android:value=".addPhoto"/>
         </activity>
+        <activity android:name=".movePhoto" android:parentActivityName=".addPhoto">
+            <meta-data android:name="android.support.PARENT_ACTIVITY" android:value=".addPhoto"/>
+        </activity>
     </application>
 
 </manifest>

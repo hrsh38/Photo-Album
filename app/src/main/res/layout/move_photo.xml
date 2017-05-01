@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AbsoluteLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <EditText
+        android:id="@+id/editText"
+        style="@style/Widget.AppCompat.EditText"
+        android:layout_width="337dp"
+        android:layout_height="wrap_content"
+        android:layout_x="13dp"
+        android:layout_y="49dp"
+        android:editable="false"
+        android:ems="10"
+        android:freezesText="true"
+        android:inputType="textPersonName" />
+
+    <TextView
+        android:id="@+id/textView7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_x="13dp"
+        android:layout_y="23dp"
+        android:text="From:" />
+
+    <ListView
+        android:layout_width="wrap_content"
+        android:layout_height="357dp"
+        android:layout_x="-2dp"
+        android:layout_y="147dp" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_x="10dp"
+        android:layout_y="122dp"
+        android:text="To:" />
+
+</AbsoluteLayout>

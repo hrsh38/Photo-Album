@@ -38,6 +38,7 @@ public class addPhoto extends AppCompatActivity implements  View.OnClickListener
     private static final int ADD_TAG_CODE = 3;
     private static final int DISPLAY_CODE = 4;
     private static final int SEARCH_TAG_CODE = 5;
+    private static final int MOVE_CODE = 6;
     ImageView imageToUpload;
     Button add;
     ArrayList<Photo> p = new ArrayList<>();
@@ -112,14 +113,13 @@ public class addPhoto extends AppCompatActivity implements  View.OnClickListener
         startActivityForResult(intent, DISPLAY_CODE);
 
     }
-    public void Cancels(View view) {
-        Intent i = new Intent();
-        i.putExtra("album", album);
-        setResult(RESULT_OK, i);
-        finish();   //Returns to previous page on call stack
-    }
+    //MOVING PICTURES
     public void Move(View view){
-        Intent i = new Intent();
+        Intent i = new Intent(this, movePhoto.class);
+        Bundle bundle = new Bundle();
+        bundle.putInt("photoindex", index);
+        i.putExtras(bundle);
+        startActivityForResult(i,MOVE_CODE);
     }
     @Override
     public void onClick(View view) {

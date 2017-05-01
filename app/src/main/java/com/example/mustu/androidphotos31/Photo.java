@@ -4,8 +4,6 @@ package com.example.mustu.androidphotos31;
 import android.graphics.Bitmap;
 import android.media.Image;
 import android.net.Uri;
-import android.os.Parcel;
-import android.os.Parcelable;
 
 import java.io.File;
 import java.io.Serializable;
@@ -21,12 +19,12 @@ import java.util.Date;
  *
  */
 
-public class Photo implements Serializable,Parcelable{
+public class Photo implements Serializable{
 
 	/**
 	 * 
 	 */
-	//private static final long serialVersionUID = 1634564310973488332L;
+	private static final long serialVersionUID = 1634564310973488332L;
 	private String photoName;
 	private String caption;
 	private Tag tag1 = new Tag("Person ", "Location");
@@ -54,26 +52,6 @@ public class Photo implements Serializable,Parcelable{
 		im = img;
 
 	}
-
-	protected Photo(Parcel in) {
-		photoName = in.readString();
-		caption = in.readString();
-		photoAdr = in.readString();
-		dateCreated = in.readString();
-		im = in.readParcelable(Uri.class.getClassLoader());
-	}
-
-	public static final Creator<Photo> CREATOR = new Creator<Photo>() {
-		@Override
-		public Photo createFromParcel(Parcel in) {
-			return new Photo(in);
-		}
-
-		@Override
-		public Photo[] newArray(int size) {
-			return new Photo[size];
-		}
-	};
 
 	public Bitmap getImage(){
 		return im;
@@ -164,29 +142,12 @@ public class Photo implements Serializable,Parcelable{
 	public void deleteTag(){
 		tag1 =  null;
 	}
-
-	@Override
-	public int describeContents() {
-		return 0;
-	}
-
-	@Override
-	public void writeToParcel(Parcel parcel, int i) {
-		parcel.writeString(photoName);
-		parcel.writeString(caption);
-		parcel.writeString(photoAdr);
-		parcel.writeString(dateCreated);
-		parcel.writeParcelable(im, i);
-	}
-
+	
 	/**
 	 * Check if the tag type is already added
 	 * @param tag
 	 * @return
 	 */
 
-	@Override
-	public String toString() {
-		return getPhotoName();
-	}
+		
 }
