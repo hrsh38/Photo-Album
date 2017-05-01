@@ -40,7 +40,7 @@ public class SearchTag extends AppCompatActivity{
         Toast.makeText(getApplicationContext(), dw.toString() + "has been passed", Toast.LENGTH_LONG).show();
         */
 
-        //Toast.makeText(getApplicationContext(), album.getPhotoList().get(index).getTag().getType(), Toast.LENGTH_LONG).show();
+        Toast.makeText(getApplicationContext(), album.getPhotoList().get(index).getTag().getType(), Toast.LENGTH_LONG).show();
         //Toast.makeText(getApplicationContext(), album.getPhotoList().get(index-1).getTag().getType(), Toast.LENGTH_LONG).show();
 
         for(index = 0; index< p.size(); index++){
