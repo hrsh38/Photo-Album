@@ -186,13 +186,14 @@ public class addPhoto extends AppCompatActivity implements  View.OnClickListener
                     tags.setText(tag.toString());
                 } catch (Exception e) {
                     Toast.makeText(getApplicationContext(), "Must have photo for tag to work", Toast.LENGTH_LONG).show();
-                    setResult(RESULT_CANCELED);
-                    finish();
+                    return;
                 }
 
             }
             case(DISPLAY_CODE):{
-                
+                if(resultCode == RESULT_OK){
+
+                }
             }
         }
 
