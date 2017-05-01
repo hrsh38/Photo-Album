@@ -24,6 +24,7 @@ import java.util.concurrent.ExecutionException;
 
 import static com.example.mustu.androidphotos31.MainActivity.albums;
 import static com.example.mustu.androidphotos31.R.drawable.no;
+import static com.example.mustu.androidphotos31.photoDisplay.pen;
 
 
 /**
@@ -137,7 +138,7 @@ public class addPhoto extends AppCompatActivity implements  View.OnClickListener
                 imageToUpload.setImageBitmap(album.getPhotoList().get(index).getImage());
                 tags.setText(album.getPhotoList().get(index).getTag().toString());
             } else {
-                //imageToUpload.setImageBitmap();
+                imageToUpload.setImageBitmap(null);
                 Toast.makeText(getApplicationContext(), album.photoList.size() + "," + index, Toast.LENGTH_LONG).show();
 
             }
@@ -195,14 +196,12 @@ public class addPhoto extends AppCompatActivity implements  View.OnClickListener
                 }
             }
             case(DISPLAY_CODE):{
-                if(resultCode == photoDisplay.RESULT_OK){
-                    bundle = getIntent().getExtras();
-                    index = bundle.getInt("pos");
+                    index = pen;
                     Toast.makeText(getApplicationContext(), "Positions at: " + index + " was clicked", Toast.LENGTH_SHORT).show();
                     imageToUpload.setImageBitmap(album.getPhotoList().get(index).getImage());
                     tags.setText(album.getPhotoList().get(index).getTag().toString());
                     break;
-                }
+
             }
             default:{
                 break;

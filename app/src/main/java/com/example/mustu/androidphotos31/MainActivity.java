@@ -41,6 +41,7 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        positions = -1;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         listView = (ListView) findViewById(R.id.album_list);
@@ -87,6 +88,7 @@ public class MainActivity extends AppCompatActivity {
                Album album = albums.get(index);
                album.albumName = name;
                break;
+
            }
            case(ADD_ALBUM_CODE): {
                if (bundle == null) {

@@ -22,9 +22,9 @@ import static com.example.mustu.androidphotos31.MainActivity.positions;
  */
 
 public class photoDisplay extends AppCompatActivity implements  View.OnClickListener{
-
     ArrayList<Photo> photoList = new ArrayList<Photo>();
     ImageAdapter adapter;
+    static int pen = -1;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.photo_display);
@@ -44,12 +44,7 @@ public class photoDisplay extends AppCompatActivity implements  View.OnClickList
         gridview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView<?> parent, View v,
                                     int position, long id) {
-                Intent intent = new Intent();
-                Bundle bundle = new Bundle();
-                bundle.putInt("pos", position);
-                intent.putExtras(bundle);
-                Toast.makeText(getApplicationContext(), "Positions at: " + position + " was clicked", Toast.LENGTH_SHORT).show();
-                setResult(RESULT_OK, intent);
+                pen = position;
                 finish();
             }
         });
