@@ -44,13 +44,12 @@ public class SearchTag extends AppCompatActivity{
 
         //Toast.makeText(getApplicationContext(), album.getPhotoList().get(index).getTag().getType(), Toast.LENGTH_LONG).show();
         //Toast.makeText(getApplicationContext(), album.getPhotoList().get(index-1).getTag().getType(), Toast.LENGTH_LONG).show();
-        searchTag();
+       // searchTag();
         adapter = new ArrayAdapter<Photo>(this, R.layout.album, list);
         listView.setAdapter(adapter);
         adapter.notifyDataSetChanged();
         Toast.makeText(getApplicationContext(),listView.getCount() + " ", Toast.LENGTH_LONG).show();
 
-        search("new");
     }
 
     public void searchTag(String query){
