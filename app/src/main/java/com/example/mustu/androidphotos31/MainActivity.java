@@ -70,8 +70,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent intent) {
-        super.onActivityResult(requestCode, resultCode,intent);
+    protected void onActivityResult(int requestCode, int resultCode, Intent intent) {super.onActivityResult(requestCode, resultCode,intent);
        switch(requestCode) {
            case(EDIT_ALBUM_CODE):{
                Bundle bundle = intent.getExtras();
@@ -137,6 +136,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    /*
     private void writeToFile(String data,Context context) {
         try {
             OutputStreamWriter outputStreamWriter = new OutputStreamWriter(context.openFileOutput("config.txt", Context.MODE_PRIVATE));
@@ -177,4 +177,5 @@ public class MainActivity extends AppCompatActivity {
 
         return ret;
     }
+    */
 }
