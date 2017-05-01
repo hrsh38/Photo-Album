@@ -50,17 +50,20 @@ public class addPhoto extends AppCompatActivity implements  View.OnClickListener
         super.onCreate(savedInstanceState);
         setContentView(R.layout.album_page);
         Intent i = getIntent();
+
+        album = (Album)i.getSerializableExtra("album");
+
         album = albums.get(i.getIntExtra("k", 0));
+
         imageToUpload = (ImageView) findViewById(R.id.imageView);
         //remove = (Button) findViewById(R.id.remove);
-        Toast.makeText(getApplicationContext(), album.getPhotoCount() + album.getAlbumName(), Toast.LENGTH_LONG).show();
+
         add = (Button) findViewById(R.id.add);
         tags = (TextView) findViewById(R.id.tag);
 
 
         imageToUpload.setOnClickListener(this);
         add.setOnClickListener(this);
-
         //remove.setOnClickListener(this);
     }
 
@@ -94,7 +97,10 @@ public class addPhoto extends AppCompatActivity implements  View.OnClickListener
     }
     public void display(View view){
         if (!album.photoList.isEmpty()) {
+            index = 0;
             imageToUpload.setImageBitmap(album.getPhotoList().get(index).getImage());
+
+            tags.setText(album.getPhotoList().get(index).getTag().toString());
         }
         else{
             Toast.makeText(getApplicationContext(),"No images!", Toast.LENGTH_LONG).show();
@@ -102,18 +108,16 @@ public class addPhoto extends AppCompatActivity implements  View.OnClickListener
         }
         /*Intent intent = new Intent(this, photoDisplay.class);
         intent.putExtra("list", album.photoList);
-        startActivityForResult(intent, DISPLAY_CODE);*/
+        startActivityForResult(intent, DISPLAY_CODE);
+        */
+    }
+    public void Cancels(View view) {
+        Intent i = new Intent();
+        i.putExtra("album", album);
+        setResult(RESULT_OK, i);
+        finish();   //Returns to previous page on call stack
     }
 
-
-    public void back(View view) {
-        Intent data = new Intent();
-        Bundle b = new Bundle();
-        b.putParcelable("album", album);
-        data.putExtras(b);
-        setResult(addPhoto.RESULT_OK, data);
-        finish();
-    }
     @Override
     public void onClick(View view) {
         if(view.getId() == R.id.add){
