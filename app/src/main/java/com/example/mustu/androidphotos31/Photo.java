@@ -1,6 +1,7 @@
 package com.example.mustu.androidphotos31;
 
 
+import android.graphics.Bitmap;
 import android.media.Image;
 import android.net.Uri;
 import android.os.Parcel;
@@ -33,7 +34,7 @@ public class Photo implements Serializable,Parcelable{
 	private String photoAdr;
 	private String dateCreated;
 	private DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
-	private Uri im;
+	private Bitmap im;
 	
 	/**
 	 * 
@@ -42,7 +43,7 @@ public class Photo implements Serializable,Parcelable{
 	 * @param caption list to hold a photo's captions
 	 * @param tag list to hold a photo's tags
 	 */
-	public Photo(String photoName, String caption, Uri img){
+	public Photo(String photoName, String caption, Bitmap img){
 		this.photoName = photoName;
 		//this.photoAdr = url;
 		Calendar cal = Calendar.getInstance();
@@ -74,7 +75,7 @@ public class Photo implements Serializable,Parcelable{
 		}
 	};
 
-	public Uri getImage(){
+	public Bitmap getImage(){
 		return im;
 	}
 	/**

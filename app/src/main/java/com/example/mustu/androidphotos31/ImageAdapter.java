@@ -1,6 +1,7 @@
 package com.example.mustu.androidphotos31;
 
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.net.Uri;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,7 +19,7 @@ import java.util.List;
 public class ImageAdapter extends BaseAdapter {
 
 
-    public Uri imageUri;
+    public Bitmap imageUri;
     ArrayList<Photo> photo = new ArrayList<>();
 
     private Context mContext;
@@ -64,8 +65,8 @@ public class ImageAdapter extends BaseAdapter {
             imageView = (ImageView) convertView;
         }
 
-        imageView.setImageURI(null);
-        imageView.setImageURI(imageUri);
+        imageView.setImageBitmap(null);
+        imageView.setImageBitmap(imageUri);
 
         return imageView;
     }

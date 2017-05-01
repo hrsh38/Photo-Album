@@ -1,6 +1,8 @@
 package com.example.mustu.androidphotos31;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.media.Image;
 import android.net.Uri;
 import android.os.Bundle;
@@ -14,6 +16,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 
+import java.io.FileNotFoundException;
+import java.io.InputStream;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.concurrent.ExecutionException;
@@ -63,7 +67,7 @@ public class addPhoto extends AppCompatActivity implements  View.OnClickListener
     public void goLeft(View view){
         if(index - 1 >= 0){
             index -= 1;
-            imageToUpload.setImageURI(album.getPhotoList().get(index).getImage());
+            imageToUpload.setImageBitmap(album.getPhotoList().get(index).getImage());
             tags.setText(album.getPhotoList().get(index).getTag().toString());
 
         }
@@ -76,7 +80,7 @@ public class addPhoto extends AppCompatActivity implements  View.OnClickListener
         try{
         if(album.getPhotoList().get(index+1)!=null && index!=-1){
             index += 1;
-            imageToUpload.setImageURI(album.getPhotoList().get(index).getImage());
+            imageToUpload.setImageBitmap(album.getPhotoList().get(index).getImage());
             tags.setText(album.getPhotoList().get(index).getTag().toString());
 
             Toast.makeText(getApplicationContext(), album.albumName, Toast.LENGTH_LONG).show();
@@ -90,7 +94,7 @@ public class addPhoto extends AppCompatActivity implements  View.OnClickListener
     }
     public void display(View view){
         if (!album.photoList.isEmpty()) {
-            imageToUpload.setImageURI(album.getPhotoList().get(index).getImage());
+            imageToUpload.setImageBitmap(album.getPhotoList().get(index).getImage());
         }
         else{
             Toast.makeText(getApplicationContext(),"No images!", Toast.LENGTH_LONG).show();
@@ -127,10 +131,10 @@ public class addPhoto extends AppCompatActivity implements  View.OnClickListener
                     index--;
                 else
                     index = 0;
-                imageToUpload.setImageURI(album.getPhotoList().get(index).getImage());
+                imageToUpload.setImageBitmap(album.getPhotoList().get(index).getImage());
                 tags.setText(album.getPhotoList().get(index).getTag().toString());
             } else {
-                imageToUpload.setImageURI(Uri.EMPTY);
+                //imageToUpload.setImageBitmap();
                 Toast.makeText(getApplicationContext(), album.photoList.size() + "," + index, Toast.LENGTH_LONG).show();
 
             }
@@ -146,11 +150,18 @@ public class addPhoto extends AppCompatActivity implements  View.OnClickListener
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == RESULT_LOAD_IMAGE && resultCode == RESULT_OK &&data != null){
-            Uri selectedImage = data.getData();
-            Photo photo = new Photo("photo1","caption",selectedImage);
+            Uri IMAGE_URI = data.getData();
+            InputStream image_stream = null;
+            try {
+                image_stream = getContentResolver().openInputStream(IMAGE_URI);
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            }
+            Bitmap bitmap= BitmapFactory.decodeStream(image_stream );
+            Photo photo = new Photo("photo1","caption",bitmap);
             album.addPhoto(photo);
             index++;
-            imageToUpload.setImageURI(album.getPhotoList().get(index).getImage());
+            imageToUpload.setImageBitmap(album.getPhotoList().get(index).getImage());
             tags.setText(album.getPhotoList().get(index).getTag().toString());
             return;
         }
