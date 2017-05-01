@@ -37,8 +37,9 @@ public class SearchTag extends AppCompatActivity{
         adapter = new ArrayAdapter<Photo>(this, R.layout.album, list);
         listView.setAdapter(adapter);
         adapter.notifyDataSetChanged();
-
+        Toast.makeText(getApplicationContext(), dw.toString() + "has been passed", Toast.LENGTH_LONG).show();
         */
+<<<<<<< HEAD
         //Toast.makeText(getApplicationContext(), album.getPhotoList().get(index).getTag().getType(), Toast.LENGTH_LONG).show();
         //Toast.makeText(getApplicationContext(), album.getPhotoList().get(index-1).getTag().getType(), Toast.LENGTH_LONG).show();
 
@@ -55,6 +56,8 @@ public class SearchTag extends AppCompatActivity{
             }
         }
 
+=======
+>>>>>>> e06fd97afe997d5e79b4e4af4e41cd976a550163
         search("new");
     }
 

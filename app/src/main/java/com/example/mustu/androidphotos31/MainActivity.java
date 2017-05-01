@@ -53,11 +53,8 @@ public class MainActivity extends AppCompatActivity {
 
     public void OpenAlbum(View view){
         Intent intent = new Intent(this, addPhoto.class);
-        Bundle b = new Bundle();
         if(positions !=-1) {
-            b.putString("b", albums.get(positions).getAlbumName());
-            b.putParcelableArrayList("a", albums.get(positions).getPhotoList());
-            intent.putExtras(b);
+            intent.putExtra("k", positions);
             startActivityForResult(intent, OPEN_ALBUM_CODE);
         }
 
