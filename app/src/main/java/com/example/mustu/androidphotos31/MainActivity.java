@@ -70,13 +70,10 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @Override
-<<<<<<< HEAD
-    protected void onActivityResult(int requestCode, int resultCode, Intent intent) {super.onActivityResult(requestCode, resultCode,intent);
-=======
     protected void onActivityResult(int requestCode, int resultCode, Intent intent) {
         super.onActivityResult(requestCode, resultCode,intent);
         Bundle bundle = new Bundle();
->>>>>>> cfa80e994b82913b886797c31e08aef92135ca57
+
        switch(requestCode) {
            case(EDIT_ALBUM_CODE):{
                if (bundle == null) {
@@ -86,7 +83,8 @@ public class MainActivity extends AppCompatActivity {
                    bundle = intent.getExtras();
                }catch (Exception e){
                    break;
-               }               String name = bundle.getString(AddEditAlbum.ALBUM_NAME);
+               }
+               String name = bundle.getString(AddEditAlbum.ALBUM_NAME);
                int index = bundle.getInt(AddEditAlbum.ALBUM_INDEX);
                Album album = albums.get(index);
                album.albumName = name;
