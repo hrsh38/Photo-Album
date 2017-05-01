@@ -147,8 +147,14 @@ public class addPhoto extends AppCompatActivity implements  View.OnClickListener
                 imageToUpload.setImageBitmap(album.getPhotoList().get(index).getImage());
                 tags.setText(album.getPhotoList().get(index).getTag().toString());
             } else {
-                imageToUpload.setImageBitmap(null);
-                Toast.makeText(getApplicationContext(), album.photoList.size() + "," + index, Toast.LENGTH_LONG).show();
+                try{
+                    index = -1;
+                    imageToUpload.setImageBitmap(null);
+                    Toast.makeText(getApplicationContext(), album.photoList.size() + "," + index, Toast.LENGTH_LONG).show();
+                }catch(Exception e){
+
+                }
+
 
             }
         } else {
@@ -190,14 +196,18 @@ public class addPhoto extends AppCompatActivity implements  View.OnClickListener
                     } catch (FileNotFoundException e) {
                         e.printStackTrace();
                     }
-                    Bitmap bitmap = BitmapFactory.decodeStream(image_stream);
-                    count++;
-                    Photo photo = new Photo("photo "+count, "caption", bitmap);
-                    album.addPhoto(photo);
-                    index++;
-                    imageToUpload.setImageBitmap(album.getPhotoList().get(index).getImage());
-                    tags.setText(album.getPhotoList().get(index).getTag().toString());
-                    return;
+                    try{
+                        Bitmap bitmap = BitmapFactory.decodeStream(image_stream);
+                        count++;
+                        Photo photo = new Photo("photo "+count, "caption", bitmap);
+                        album.addPhoto(photo);
+                        index++;
+                        imageToUpload.setImageBitmap(album.getPhotoList().get(index).getImage());
+                        tags.setText(album.getPhotoList().get(index).getTag().toString());
+                        return;
+                    }catch(Exception e){
+                    }
+
                 }
                 break;
             }
