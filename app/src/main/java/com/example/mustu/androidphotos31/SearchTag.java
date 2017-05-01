@@ -13,6 +13,7 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 
+import static com.example.mustu.androidphotos31.R.layout.album;
 import static com.example.mustu.androidphotos31.addPhoto.*;
 
 /**
@@ -46,7 +47,7 @@ public class SearchTag extends AppCompatActivity{
             Toast.makeText(getApplicationContext(), "it didn't work", Toast.LENGTH_LONG).show();
             try{
                 if(album.getPhotoList().get(index).getTag().getType() == "dog" || album.getPhotoList().get(index).getTag().getValue() == "dog"){
-                    adapter = new ArrayAdapter<Photo>(this, R.layout.album, list);
+                    adapter = new ArrayAdapter<Photo>(this, album, list);
                     listView.setAdapter(adapter);
                     adapter.notifyDataSetChanged();
                 }
@@ -62,7 +63,7 @@ public class SearchTag extends AppCompatActivity{
         for(int i =0 ; i < p.size(); i++){
             try{
                 if(album.getPhotoList().get(i).getTag().getType() == query || album.getPhotoList().get(index).getTag().getValue() == query){
-                    adapter = new ArrayAdapter<Photo>(this, R.layout.album, list);
+                    adapter = new ArrayAdapter<Photo>(this, album, list);
                     listView.setAdapter(adapter);
                     adapter.notifyDataSetChanged();
                 }
