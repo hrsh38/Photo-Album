@@ -45,7 +45,10 @@ public class photoDisplay extends AppCompatActivity implements  View.OnClickList
             public void onItemClick(AdapterView<?> parent, View v,
                                     int position, long id) {
                 Intent intent = new Intent();
-                intent.putExtra("pos", position);
+                Bundle bundle = new Bundle();
+                bundle.putInt("pos", position);
+                intent.putExtras(bundle);
+                Toast.makeText(getApplicationContext(), "Positions at: " + position + " was clicked", Toast.LENGTH_SHORT).show();
                 setResult(RESULT_OK, intent);
                 finish();
             }

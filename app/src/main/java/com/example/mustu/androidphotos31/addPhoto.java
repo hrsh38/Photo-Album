@@ -152,6 +152,7 @@ public class addPhoto extends AppCompatActivity implements  View.OnClickListener
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+        Bundle bundle = new Bundle();
         switch(requestCode) {
             case(RESULT_LOAD_IMAGE): {
                 if(resultCode == RESULT_OK && data != null){
@@ -173,7 +174,11 @@ public class addPhoto extends AppCompatActivity implements  View.OnClickListener
             }
 
             case(ADD_TAG_CODE) :{
-                Bundle bundle = data.getExtras();
+                try {
+                    bundle = data.getExtras();
+                }catch (Exception e){
+                    break;
+                }
                 if (bundle == null) {
                     return;
                 }
@@ -188,12 +193,19 @@ public class addPhoto extends AppCompatActivity implements  View.OnClickListener
                     Toast.makeText(getApplicationContext(), "Must have photo for tag to work", Toast.LENGTH_LONG).show();
                     return;
                 }
-
             }
             case(DISPLAY_CODE):{
-                if(resultCode == RESULT_OK){
-
+                if(resultCode == photoDisplay.RESULT_OK){
+                    bundle = getIntent().getExtras();
+                    index = bundle.getInt("pos");
+                    Toast.makeText(getApplicationContext(), "Positions at: " + index + " was clicked", Toast.LENGTH_SHORT).show();
+                    imageToUpload.setImageBitmap(album.getPhotoList().get(index).getImage());
+                    tags.setText(album.getPhotoList().get(index).getTag().toString());
+                    break;
                 }
+            }
+            default:{
+                break;
             }
         }
 
