@@ -37,8 +37,24 @@ public class SearchTag extends AppCompatActivity{
         adapter = new ArrayAdapter<Photo>(this, R.layout.album, list);
         listView.setAdapter(adapter);
         adapter.notifyDataSetChanged();
-        Toast.makeText(getApplicationContext(), dw.toString() + "has been passed", Toast.LENGTH_LONG).show();
+
         */
+        Toast.makeText(getApplicationContext(), album.getPhotoList().get(index).getTag().getType(), Toast.LENGTH_LONG).show();
+        //Toast.makeText(getApplicationContext(), album.getPhotoList().get(index-1).getTag().getType(), Toast.LENGTH_LONG).show();
+
+        for(index = 0; index< p.size(); index++){
+            Toast.makeText(getApplicationContext(), "it didn't work", Toast.LENGTH_LONG).show();
+            try{
+                if(album.getPhotoList().get(index).getTag().getType() == "dog" || album.getPhotoList().get(index).getTag().getValue() == "dog"){
+                    adapter = new ArrayAdapter<Photo>(this, R.layout.album, list);
+                    listView.setAdapter(adapter);
+                    adapter.notifyDataSetChanged();
+                }
+            }catch(Exception e){
+                Toast.makeText(getApplicationContext(), "it didn't work", Toast.LENGTH_LONG).show();
+            }
+        }
+
         search("new");
     }
 

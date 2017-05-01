@@ -160,9 +160,16 @@ public class addPhoto extends AppCompatActivity implements  View.OnClickListener
         String locations = bundle.getString(addTag.LOCATION_TAG);
 
         if(requestCode == ADD_TAG_CODE){
-            tag = new Tag(name, locations);
-            album.getPhotoList().get(index).setTag(tag);
-            tags.setText(tag.toString());
+            try{
+                tag = new Tag(name, locations);
+                album.getPhotoList().get(index).setTag(tag);
+                tags.setText(tag.toString());
+            }catch(Exception e){
+                Toast.makeText(getApplicationContext(),"Must have photo for tag to work", Toast.LENGTH_LONG).show();
+                setResult(RESULT_CANCELED);
+                finish();
+            }
+
         }
     }
 
