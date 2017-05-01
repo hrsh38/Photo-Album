@@ -2,6 +2,7 @@ package com.example.mustu.androidphotos31;
 
 import android.content.Intent;
 import android.graphics.Color;
+import android.os.Parcelable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -20,7 +21,7 @@ public class MainActivity extends AppCompatActivity {
     ListView listView;
     Button openAlbum, deleteAlbum;
     EditText edit;
-    public ArrayList<Album> albums = new ArrayList<Album>();
+    public static ArrayList<Album> albums = new ArrayList<Album>();
     public ArrayAdapter<Album> adapter;
     //public AlbumListAdapter adapters;
     public static final int EDIT_ALBUM_CODE = 1;
@@ -51,14 +52,13 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void OpenAlbum(View view){
-        try{
-            Intent intent = new Intent(this, addPhoto.class);
-            if(positions !=-1) {
-                intent.putExtra("album", albums.get(positions));
-                startActivityForResult(intent, OPEN_ALBUM_CODE);
-            }
-        }catch(Exception e){
-            Toast.makeText(getApplicationContext(), "No album was selected to be opened", Toast.LENGTH_SHORT).show();
+        Intent intent = new Intent(this, addPhoto.class);
+        Bundle b = new Bundle();
+        if(positions !=-1) {
+            b.putString("b", albums.get(positions).getAlbumName());
+            b.putParcelableArrayList("a", albums.get(positions).getPhotoList());
+            intent.putExtras(b);
+            startActivityForResult(intent, OPEN_ALBUM_CODE);
         }
 
     }
@@ -66,33 +66,40 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent intent) {
         super.onActivityResult(requestCode, resultCode,intent);
+       switch(requestCode) {
+           case(EDIT_ALBUM_CODE):{
+               Bundle bundle = intent.getExtras();
+               if (bundle == null) {
+                   return;
+               }
 
-        if (resultCode != RESULT_OK) {
-            return;
-        }
+               String name = bundle.getString(AddEditAlbum.ALBUM_NAME);
+               int index = bundle.getInt(AddEditAlbum.ALBUM_INDEX);
+               Album album = albums.get(index);
+               album.albumName = name;
+               break;
+           }
+           case(ADD_ALBUM_CODE): {
 
-        Bundle bundle = intent.getExtras();
-        if (bundle == null) {
-            return;
-        }
-
-        String name = bundle.getString(AddEditAlbum.ALBUM_NAME);
-        int index = bundle.getInt(AddEditAlbum.ALBUM_INDEX);
-
-        if (requestCode == EDIT_ALBUM_CODE){
-            Album album = albums.get(index);
-            album.albumName = name;
-        }
-        else if (requestCode == ADD_ALBUM_CODE){
-            ArrayList<Photo> photos = new ArrayList<>();
-            albums.add(new Album(name, photos));
-            //Toast.makeText(getApplicationContext(), positions, Toast.LENGTH_LONG).show();
-        }
-        else if (requestCode == OPEN_ALBUM_CODE){
-            Intent i = getIntent();
-            Album a =  (Album)i.getSerializableExtra("album");
-            albums.set(positions, a);
-        }
+               Bundle bundle = intent.getExtras();
+               if (bundle == null) {
+                   return;
+               }
+               String name = bundle.getString(AddEditAlbum.ALBUM_NAME);
+               ArrayList<Photo> photos = new ArrayList<>();
+               albums.add(new Album(name, photos));
+               break;
+               //Toast.makeText(getApplicationContext(), positions, Toast.LENGTH_LONG).show();
+           }
+           case(OPEN_ALBUM_CODE) :{
+               if(resultCode == addPhoto.RESULT_OK) {
+                   Bundle b = intent.getExtras();
+                   albums.set(positions,(Album) b.getParcelable("album"));
+               }
+               Toast.makeText(getApplicationContext(), albums.get(positions).getPhotoCount() + " hi", Toast.LENGTH_LONG).show();
+               break;
+           }
+       }
         adapter = new ArrayAdapter<Album>(this, R.layout.album, albums);
         listView.setAdapter(adapter);
         adapter.notifyDataSetChanged();
