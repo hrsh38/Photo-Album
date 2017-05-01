@@ -8,12 +8,12 @@
         android:layout_height="579dp"
         android:layout_x="0dp"
         android:layout_y="0dp"
-        android:padding="10dp"
-        android:textColor="#000000"
-        android:textSize="10dp"
         android:background="@drawable/bg_key"
         android:choiceMode="singleChoice"
-        android:listSelector="#666666"/>
+        android:listSelector="#666666"
+        android:padding="10dp"
+        android:textColor="#000000"
+        android:textSize="10dp" />
 
     <Button
         android:id="@+id/rename"

@@ -45,19 +45,19 @@ public class ListAdapter extends BaseAdapter {
         final ViewHolder holder;
         if (view == null) {
             holder = new ViewHolder();
-            view = inflater.inflate(R.layout.listview_item, null);
-            holder.name = (TextView) view.findViewById(R.id.name);
+            //view = inflater.inflate(R.layout.listview_item, null);
+            //holder.name = (TextView) view.findViewById(R.id.name);
             view.setTag(holder);
         } else {
             holder = (ViewHolder) view.getTag();
         }
         // Set the results into TextViews
-        holder.name.setText(albums.get(position);
+        //holder.name.setText(albums.get(position);
         return view;
     }
 
     // Filter Class
-    public void filter(String charText) {
+    /*public void filter(String charText) {
         charText = charText.toLowerCase(Locale.getDefault());
         animalNamesList.clear();
         if (charText.length() == 0) {
@@ -70,6 +70,6 @@ public class ListAdapter extends BaseAdapter {
             }
         }
         notifyDataSetChanged();
-    }
+    }*/
 
 }

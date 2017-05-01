@@ -1,6 +1,7 @@
 package com.example.mustu.androidphotos31;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -24,6 +25,7 @@ public class movePhoto extends AppCompatActivity implements  View.OnClickListene
     public ArrayAdapter<Album> adapter;
     int index;
     Photo photo;
+    static int posOfMove = 0;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,14 +41,19 @@ public class movePhoto extends AppCompatActivity implements  View.OnClickListene
 
 
         listView = (ListView) findViewById(R.id.list_view);
+
         adapter = new ArrayAdapter<Album>(this, R.layout.album, albums);
         listView.setAdapter(adapter);
         adapter.notifyDataSetChanged();
 
+
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView<?> parent, View v,
                                     int position, long id) {
-
+                posOfMove = position;
+                v.setBackgroundColor(Color.LTGRAY);
+                setResult(RESULT_OK);
+                finish();
             }
         });
     }

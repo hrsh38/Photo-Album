@@ -25,6 +25,7 @@ import java.util.concurrent.ExecutionException;
 import static com.example.mustu.androidphotos31.MainActivity.albums;
 import static com.example.mustu.androidphotos31.MainActivity.positions;
 import static com.example.mustu.androidphotos31.R.drawable.no;
+import static com.example.mustu.androidphotos31.movePhoto.posOfMove;
 import static com.example.mustu.androidphotos31.photoDisplay.pen;
 
 
@@ -115,11 +116,15 @@ public class addPhoto extends AppCompatActivity implements  View.OnClickListener
     }
     //MOVING PICTURES
     public void Move(View view){
-        Intent i = new Intent(this, movePhoto.class);
-        Bundle bundle = new Bundle();
-        bundle.putInt("photoindex", index);
-        i.putExtras(bundle);
-        startActivityForResult(i,MOVE_CODE);
+        try {
+            Intent i = new Intent(this, movePhoto.class);
+            Bundle bundle = new Bundle();
+            bundle.putInt("photoindex", index);
+            i.putExtras(bundle);
+            startActivityForResult(i, MOVE_CODE);
+        }catch(Exception e){
+            Toast.makeText(getApplicationContext(),"No images!", Toast.LENGTH_LONG).show();
+        }
     }
     @Override
     public void onClick(View view) {
@@ -151,6 +156,23 @@ public class addPhoto extends AppCompatActivity implements  View.OnClickListener
         }
 
         //Toast.makeText(getApplicationContext(),album.photoList.size() + "", Toast.LENGTH_LONG).show();
+    }
+    public void d(){
+        size = album.photoList.size();
+        album.deletePhoto(index);
+        size--;
+        if (index - 1 >= 0 || size != 0) {
+            if(index-1 >=0)
+                index--;
+            else
+                index = 0;
+            imageToUpload.setImageBitmap(album.getPhotoList().get(index).getImage());
+            tags.setText(album.getPhotoList().get(index).getTag().toString());
+        } else {
+            imageToUpload.setImageBitmap(null);
+            Toast.makeText(getApplicationContext(), album.photoList.size() + "," + index, Toast.LENGTH_LONG).show();
+
+        }
 
     }
     @Override
@@ -199,12 +221,24 @@ public class addPhoto extends AppCompatActivity implements  View.OnClickListener
                 }
             }
             case(DISPLAY_CODE):{
+                try {
                     index = pen;
                     Toast.makeText(getApplicationContext(), "Positions at: " + index + " was clicked", Toast.LENGTH_SHORT).show();
                     imageToUpload.setImageBitmap(album.getPhotoList().get(index).getImage());
                     tags.setText(album.getPhotoList().get(index).getTag().toString());
-                    break;
+                }catch(Exception e){
+                    Toast.makeText(getApplicationContext(), "No photos selected!", Toast.LENGTH_LONG).show();
 
+                }
+                break;
+
+            }
+            case(MOVE_CODE): {
+                if(resultCode == RESULT_OK ){
+                    Photo temp = albums.get(positions).getPhotoList().get(index);
+                    d();
+                    albums.get(posOfMove).getPhotoList().add(temp);
+                }
             }
             default:{
                 break;

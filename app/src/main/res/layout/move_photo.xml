@@ -24,10 +24,17 @@
         android:text="From:" />
 
     <ListView
+        android:id="@+id/list_view"
         android:layout_width="wrap_content"
-        android:layout_height="357dp"
-        android:layout_x="-2dp"
-        android:layout_y="147dp" />
+        android:layout_height="424dp"
+        android:layout_x="0dp"
+        android:layout_y="154dp"
+        android:background="@drawable/bg_key"
+        android:choiceMode="singleChoice"
+        android:listSelector="#666666"
+        android:padding="10dp"
+        android:textColor="#000000"
+        android:textSize="10dp" />
 
     <TextView
         android:id="@+id/textView3"

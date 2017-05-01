@@ -60,7 +60,7 @@ public class SearchTag extends AppCompatActivity implements SearchView.OnQueryTe
     @Override
     public boolean onQueryTextChange(String newText) {
         String text = newText;
-        adapter.filter(text);
+        //adapter.filter(text);
         return false;
     }
 }
