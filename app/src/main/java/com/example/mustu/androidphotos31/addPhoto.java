@@ -45,11 +45,11 @@ public class addPhoto extends AppCompatActivity implements  View.OnClickListener
         super.onCreate(savedInstanceState);
         setContentView(R.layout.album_page);
         Intent i = getIntent();
-<<<<<<< HEAD
+
         album = (Album)i.getSerializableExtra("album");
-=======
+
         album = albums.get(i.getIntExtra("k", 0));
->>>>>>> e06fd97afe997d5e79b4e4af4e41cd976a550163
+
         imageToUpload = (ImageView) findViewById(R.id.imageView);
         //remove = (Button) findViewById(R.id.remove);
 
@@ -91,20 +91,20 @@ public class addPhoto extends AppCompatActivity implements  View.OnClickListener
         }
     }
     public void display(View view){
-<<<<<<< HEAD
-        Intent intent = new Intent(this, photoDisplay.class);
-=======
         if (!album.photoList.isEmpty()) {
+            index = 0;
             imageToUpload.setImageURI(album.getPhotoList().get(index).getImage());
+            tags.setText(album.getPhotoList().get(index).getTag().toString());
+
         }
         else{
             Toast.makeText(getApplicationContext(),"No images!", Toast.LENGTH_LONG).show();
 
         }
         /*Intent intent = new Intent(this, photoDisplay.class);
->>>>>>> e06fd97afe997d5e79b4e4af4e41cd976a550163
         intent.putExtra("list", album.photoList);
         startActivityForResult(intent, DISPLAY_CODE);
+        */
     }
     public void Cancels(View view) {
         Intent i = new Intent();
