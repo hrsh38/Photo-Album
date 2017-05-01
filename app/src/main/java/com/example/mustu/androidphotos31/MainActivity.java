@@ -72,25 +72,32 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent intent) {
         super.onActivityResult(requestCode, resultCode,intent);
+        Bundle bundle = new Bundle();
        switch(requestCode) {
            case(EDIT_ALBUM_CODE):{
-               Bundle bundle = intent.getExtras();
                if (bundle == null) {
                    return;
                }
-
-               String name = bundle.getString(AddEditAlbum.ALBUM_NAME);
+               try {
+                   bundle = intent.getExtras();
+               }catch (Exception e){
+                   break;
+               }               String name = bundle.getString(AddEditAlbum.ALBUM_NAME);
                int index = bundle.getInt(AddEditAlbum.ALBUM_INDEX);
                Album album = albums.get(index);
                album.albumName = name;
                break;
            }
            case(ADD_ALBUM_CODE): {
-
-               Bundle bundle = intent.getExtras();
                if (bundle == null) {
                    return;
                }
+               try {
+                   bundle = intent.getExtras();
+               }catch (Exception e){
+                   break;
+               }
+
                String name = bundle.getString(AddEditAlbum.ALBUM_NAME);
                ArrayList<Photo> photos = new ArrayList<>();
                albums.add(new Album(name, photos));
@@ -103,6 +110,9 @@ public class MainActivity extends AppCompatActivity {
                    albums.set(positions,(Album) b.getParcelable("album"));
                }
                Toast.makeText(getApplicationContext(), albums.get(positions).getPhotoCount() + " hi", Toast.LENGTH_LONG).show();
+               break;
+           }
+           default:{
                break;
            }
        }
