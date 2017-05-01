@@ -118,13 +118,22 @@
         android:text="Delete Tag" />
 
     <Button
+        android:id="@+id/button6"
+        android:layout_width="110dp"
+        android:layout_height="wrap_content"
+        android:layout_x="251dp"
+        android:layout_y="462dp"
+        android:onClick="searchTag"
+        android:text="Search" />
+
+    <Button
         android:id="@+id/button4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_x="275dp"
-        android:layout_y="454dp"
+        android:layout_x="22dp"
+        android:layout_y="463dp"
         android:onClick="searchTag"
-        android:text="Search" />
+        android:text="Move Photo" />
 
     android:layout_alignBaseline="@+id/remove"
         android:layout_alignBottom="@+id/remove"

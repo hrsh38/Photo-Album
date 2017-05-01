@@ -23,6 +23,7 @@ import java.util.ArrayList;
 import java.util.concurrent.ExecutionException;
 
 import static com.example.mustu.androidphotos31.MainActivity.albums;
+import static com.example.mustu.androidphotos31.MainActivity.positions;
 import static com.example.mustu.androidphotos31.R.drawable.no;
 import static com.example.mustu.androidphotos31.photoDisplay.pen;
 
@@ -41,7 +42,7 @@ public class addPhoto extends AppCompatActivity implements  View.OnClickListener
     Button add;
     static ArrayList<Photo> p = new ArrayList<>();
     static Album album = new Album("hi",p);
-    static int index = -1;
+    int index = -1;
     int size = 0;
     TextView tags;
     Tag tag;
@@ -52,9 +53,9 @@ public class addPhoto extends AppCompatActivity implements  View.OnClickListener
         setContentView(R.layout.album_page);
         Intent i = getIntent();
 
-        album = (Album)i.getSerializableExtra("album");
+        //album = (Album)i.getSerializableExtra("album");
 
-        album = albums.get(i.getIntExtra("k", 0));
+        album = albums.get(positions);
 
         imageToUpload = (ImageView) findViewById(R.id.imageView);
         //remove = (Button) findViewById(R.id.remove);
@@ -117,7 +118,9 @@ public class addPhoto extends AppCompatActivity implements  View.OnClickListener
         setResult(RESULT_OK, i);
         finish();   //Returns to previous page on call stack
     }
-
+    public void Move(View view){
+        Intent i = new Intent();
+    }
     @Override
     public void onClick(View view) {
         if(view.getId() == R.id.add){
