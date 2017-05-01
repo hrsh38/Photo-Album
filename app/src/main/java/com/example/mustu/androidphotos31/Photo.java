@@ -185,5 +185,8 @@ public class Photo implements Serializable,Parcelable{
 	 * @return
 	 */
 
-		
+	@Override
+	public String toString() {
+		return getPhotoName();
+	}
 }
