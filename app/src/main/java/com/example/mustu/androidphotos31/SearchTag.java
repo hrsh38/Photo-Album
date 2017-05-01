@@ -21,7 +21,7 @@ import static com.example.mustu.androidphotos31.addPhoto.*;
  * Created by mustu on 4/30/2017.
  */
 
-public class SearchTag extends AppCompatActivity{
+public class SearchTag extends AppCompatActivity implements SearchView.OnQueryTextListener{
     ArrayList<Photo> list = new ArrayList<Photo>();
     ListView listView;
     public ArrayAdapter<Photo> adapter;
@@ -32,19 +32,9 @@ public class SearchTag extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.search);
         listView = (ListView) findViewById(R.id.list_view);
-        //search = (SearchView) findViewById(R.id.search);
-        DataWrapper dw = (DataWrapper) getIntent().getSerializableExtra("data");
-        /*
-        list = dw.getParliaments();
-        adapter = new ArrayAdapter<Photo>(this, R.layout.album, list);
-        listView.setAdapter(adapter);
-        adapter.notifyDataSetChanged();
-        Toast.makeText(getApplicationContext(), dw.toString() + "has been passed", Toast.LENGTH_LONG).show();
-        */
+        search = (SearchView) findViewById(R.id.search);
+        search.setOnQueryTextListener(this);
 
-        //Toast.makeText(getApplicationContext(), album.getPhotoList().get(index).getTag().getType(), Toast.LENGTH_LONG).show();
-        //Toast.makeText(getApplicationContext(), album.getPhotoList().get(index-1).getTag().getType(), Toast.LENGTH_LONG).show();
-       // searchTag();
         adapter = new ArrayAdapter<Photo>(this, R.layout.album, list);
         listView.setAdapter(adapter);
         adapter.notifyDataSetChanged();
@@ -60,5 +50,17 @@ public class SearchTag extends AppCompatActivity{
                 }
             }
         }
+    }
+
+    @Override
+    public boolean onQueryTextSubmit(String query) {
+        return false;
+    }
+
+    @Override
+    public boolean onQueryTextChange(String newText) {
+        String text = newText;
+        adapter.filter(text);
+        return false;
     }
 }
