@@ -44,15 +44,7 @@ public class SearchTag extends AppCompatActivity{
 
         //Toast.makeText(getApplicationContext(), album.getPhotoList().get(index).getTag().getType(), Toast.LENGTH_LONG).show();
         //Toast.makeText(getApplicationContext(), album.getPhotoList().get(index-1).getTag().getType(), Toast.LENGTH_LONG).show();
-
-        for(Album al:albums){
-            for(Photo photo:al.getPhotoList()) {
-                if(photo.getTag().getType().contains("dog")||photo.getTag().getValue().contains("dog")){
-                    list.add(photo);
-                }
-            }
-        }
-
+        searchTag();
         adapter = new ArrayAdapter<Photo>(this, R.layout.album, list);
         listView.setAdapter(adapter);
         adapter.notifyDataSetChanged();
@@ -61,16 +53,12 @@ public class SearchTag extends AppCompatActivity{
         search("new");
     }
 
-    public void search(String query){
-        for(int i =0 ; i < albums.get(positions).getPhotoCount(); i++){
-            try{
-                if(album.getPhotoList().get(i).getTag().getType() == query || album.getPhotoList().get(index).getTag().getValue() == query){
-                    adapter = new ArrayAdapter<Photo>(this, R.layout.album, list);
-                    listView.setAdapter(adapter);
-                    adapter.notifyDataSetChanged();
+    public void searchTag(String query){
+        for(Album al:albums){
+            for(Photo photo:al.getPhotoList()) {
+                if(photo.getTag().getType().contains(query)||photo.getTag().getValue().contains(query)){
+                    list.add(photo);
                 }
-            }catch(Exception e){
-                Toast.makeText(getApplicationContext(), "it didn't work", Toast.LENGTH_LONG).show();
             }
         }
     }
