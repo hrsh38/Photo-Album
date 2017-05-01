@@ -33,9 +33,9 @@ public class addPhoto extends AppCompatActivity implements  View.OnClickListener
     private static final int SEARCH_TAG_CODE = 5;
     ImageView imageToUpload;
     Button add;
-     ArrayList<Photo> p;
-     Album album = new Album("hi",p);
-     int index = -1;
+    static ArrayList<Photo> p;
+    static Album album = new Album("hi",p);
+    static int index = -1;
     int size = 0;
     TextView tags;
     Tag tag;
