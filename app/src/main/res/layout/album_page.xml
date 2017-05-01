@@ -25,7 +25,6 @@
         android:layout_alignParentStart="true"
         android:layout_x="4dp"
         android:layout_y="463dp"
-        android:onClick="Cancels"
         android:text="Back" />
 
     <Button
