@@ -74,6 +74,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent intent) {
         super.onActivityResult(requestCode, resultCode,intent);
         Bundle bundle = new Bundle();
+
        switch(requestCode) {
            case(EDIT_ALBUM_CODE):{
                if (bundle == null) {
@@ -83,7 +84,8 @@ public class MainActivity extends AppCompatActivity {
                    bundle = intent.getExtras();
                }catch (Exception e){
                    break;
-               }               String name = bundle.getString(AddEditAlbum.ALBUM_NAME);
+               }
+               String name = bundle.getString(AddEditAlbum.ALBUM_NAME);
                int index = bundle.getInt(AddEditAlbum.ALBUM_INDEX);
                Album album = albums.get(index);
                album.albumName = name;
@@ -149,6 +151,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    /*
     private void writeToFile(String data,Context context) {
         try {
             OutputStreamWriter outputStreamWriter = new OutputStreamWriter(context.openFileOutput("config.txt", Context.MODE_PRIVATE));
@@ -189,4 +192,5 @@ public class MainActivity extends AppCompatActivity {
 
         return ret;
     }
+    */
 }
