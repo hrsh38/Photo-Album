@@ -38,7 +38,7 @@
         android:layout_alignStart="@+id/button8"
         android:layout_x="137dp"
         android:layout_y="285dp"
-        android:text="Person : Location" />
+        android:text="           :" />
 
     <Button
         android:id="@+id/left"

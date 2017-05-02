@@ -245,7 +245,7 @@ public class addPhoto extends AppCompatActivity implements  View.OnClickListener
 
     public void deleteTag(View view) {
         try {
-            album.getPhotoList().get(index).setTag(new Tag("Person ", "Location"));
+            album.getPhotoList().get(index).setTag(new Tag(" ", " "));
             tags.setText(album.getPhotoList().get(index).getTag().toString());
         } catch (Exception e) {
             Toast.makeText(getApplicationContext(), "No Tag Has Been Set Yet", Toast.LENGTH_LONG).show();

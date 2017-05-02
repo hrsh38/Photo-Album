@@ -27,7 +27,7 @@ public class Photo implements Serializable{
 	private static final long serialVersionUID = 1634564310973488332L;
 	private String photoName;
 	private String caption;
-	private Tag tag1 = new Tag("Person ", "Location");
+	private Tag tag1 = new Tag(" ", " ");
 
 	private String photoAdr;
 	private String dateCreated;
