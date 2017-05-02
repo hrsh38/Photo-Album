@@ -10,6 +10,7 @@ import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.List;
 
@@ -34,7 +35,16 @@ public class movePhoto extends AppCompatActivity implements  View.OnClickListene
         Intent i = getIntent();
         Bundle b = i.getExtras();
         index = b.getInt("photoindex");
-        photo = albums.get(positions).getPhotoList().get(index);
+        if(index == -1){
+            Toast.makeText(getApplicationContext(),"No images in gallery!", Toast.LENGTH_LONG).show();
+            return;
+        }
+        try{
+            photo = albums.get(positions).getPhotoList().get(index);
+        }catch(Exception e){
+            Toast.makeText(getApplicationContext(),"No images in gallery!", Toast.LENGTH_LONG).show();
+        }
+
 
         EditText editText = (EditText)findViewById(R.id.editText);
         editText.setText(photo.getPhotoName(), TextView.BufferType.NORMAL);

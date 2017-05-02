@@ -21,7 +21,7 @@ import static com.example.mustu.androidphotos31.MainActivity.positions;
 import static com.example.mustu.androidphotos31.addPhoto.*;
 
 /**
- * Created by mustu on 4/30/2017.
+ * Created by Mustufa on 4/30/2017.
  */
 
 public class SearchTag extends AppCompatActivity implements SearchView.OnQueryTextListener{
@@ -41,7 +41,6 @@ public class SearchTag extends AppCompatActivity implements SearchView.OnQueryTe
         adapter = new ArrayAdapter<Photo>(this, R.layout.album, list);
         listView.setAdapter(adapter);
         adapter.notifyDataSetChanged();
-        Toast.makeText(getApplicationContext(),listView.getCount() + " ", Toast.LENGTH_LONG).show();
 
     }
 
@@ -76,6 +75,4 @@ public class SearchTag extends AppCompatActivity implements SearchView.OnQueryTe
             return true;
         }
     }
-
-
 }

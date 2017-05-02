@@ -38,7 +38,6 @@ public class MainActivity extends AppCompatActivity {
     public static ArrayList<Album> albums = new ArrayList<Album>();
     public static String fileName = "createResumeForm.ser";
     public ArrayAdapter<Album> adapter;
-    //public AlbumListAdapter adapters;
     public static final int EDIT_ALBUM_CODE = 1;
     public static final int ADD_ALBUM_CODE = 2;
     public static final int OPEN_ALBUM_CODE = 3;
@@ -59,7 +58,6 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 positions = position;
-                Toast.makeText(getApplicationContext(), "Positions at: " + positions + " was clicked", Toast.LENGTH_SHORT).show();
                 view.setBackgroundColor(Color.LTGRAY);
             }
         });
@@ -121,14 +119,12 @@ public class MainActivity extends AppCompatActivity {
                ArrayList<Photo> photos = new ArrayList<>();
                albums.add(new Album(name, photos));
                break;
-               //Toast.makeText(getApplicationContext(), positions, Toast.LENGTH_LONG).show();
            }
            case(OPEN_ALBUM_CODE) :{
                if(resultCode == addPhoto.RESULT_OK) {
                    Bundle b = intent.getExtras();
                    albums.set(positions,(Album) b.getParcelable("album"));
                }
-               Toast.makeText(getApplicationContext(), albums.get(positions).getPhotoCount() + " hi", Toast.LENGTH_LONG).show();
                break;
            }
            default:{

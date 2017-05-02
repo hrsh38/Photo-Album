@@ -33,7 +33,7 @@ import static com.example.mustu.androidphotos31.photoDisplay.pen;
  * Created by harsh on 4/27/2017.
  */
 
-public class addPhoto extends AppCompatActivity implements  View.OnClickListener{
+public class addPhoto extends AppCompatActivity implements  View.OnClickListener {
     private static final int RESULT_LOAD_IMAGE = 1;
     private static final int RESULT_DELETE_IMAGE = 2;
     private static final int ADD_TAG_CODE = 3;
@@ -43,7 +43,7 @@ public class addPhoto extends AppCompatActivity implements  View.OnClickListener
     ImageView imageToUpload;
     Button add;
     ArrayList<Photo> p = new ArrayList<>();
-    Album album = new Album("hi",p);
+    Album album = new Album("hi", p);
     int index = -1;
     int size = 0;
     int count = 0;
@@ -55,121 +55,100 @@ public class addPhoto extends AppCompatActivity implements  View.OnClickListener
         super.onCreate(savedInstanceState);
         setContentView(R.layout.album_page);
         Intent i = getIntent();
-
-        //album = (Album)i.getSerializableExtra("album");
-
         album = albums.get(positions);
-
         imageToUpload = (ImageView) findViewById(R.id.imageView);
-        //remove = (Button) findViewById(R.id.remove);
-
         add = (Button) findViewById(R.id.add);
         tags = (TextView) findViewById(R.id.tag);
-
-
         imageToUpload.setOnClickListener(this);
         add.setOnClickListener(this);
-        //remove.setOnClickListener(this);
     }
 
-    public void goLeft(View view){
-        if(index - 1 >= 0){
+    public void goLeft(View view) {
+        if (index - 1 >= 0) {
             index -= 1;
             imageToUpload.setImageBitmap(album.getPhotoList().get(index).getImage());
             tags.setText(album.getPhotoList().get(index).getTag().toString());
-
-        }
-        else{
-            Toast.makeText(getApplicationContext(),"No more images to the Left!", Toast.LENGTH_LONG).show();
+        } else {
+            Toast.makeText(getApplicationContext(), "No more images to the Left!", Toast.LENGTH_LONG).show();
         }
     }
 
-    public void goRight(View view){
-        try{
-        if(album.getPhotoList().get(index+1)!=null && index!=-1){
-            index += 1;
-            imageToUpload.setImageBitmap(album.getPhotoList().get(index).getImage());
-            tags.setText(album.getPhotoList().get(index).getTag().toString());
-
-            Toast.makeText(getApplicationContext(), album.albumName, Toast.LENGTH_LONG).show();
-
-        }
-        else {
+    public void goRight(View view) {
+        try {
+            if (album.getPhotoList().get(index + 1) != null && index != -1) {
+                index += 1;
+                imageToUpload.setImageBitmap(album.getPhotoList().get(index).getImage());
+                tags.setText(album.getPhotoList().get(index).getTag().toString());
+            } else {
+                Toast.makeText(getApplicationContext(), "No more images to the Right!", Toast.LENGTH_LONG).show();
+            }
+        } catch (Exception e) {
             Toast.makeText(getApplicationContext(), "No more images to the Right!", Toast.LENGTH_LONG).show();
-        }}catch(Exception e){
-            Toast.makeText(getApplicationContext(),"No more images to the Right!", Toast.LENGTH_LONG).show();
         }
     }
-    public void display(View view){
-       /* if (!album.photoList.isEmpty()) {
-            index = 0;
-            imageToUpload.setImageBitmap(album.getPhotoList().get(index).getImage());
 
-            tags.setText(album.getPhotoList().get(index).getTag().toString());
-        }
-        else{
-            Toast.makeText(getApplicationContext(),"No images!", Toast.LENGTH_LONG).show();
-
-        }*/
+    public void display(View view) {
         Intent intent = new Intent(this, photoDisplay.class);
         startActivityForResult(intent, DISPLAY_CODE);
 
     }
+
     //MOVING PICTURES
-    public void Move(View view){
+    public void Move(View view) {
         try {
             Intent i = new Intent(this, movePhoto.class);
             Bundle bundle = new Bundle();
             bundle.putInt("photoindex", index);
             i.putExtras(bundle);
             startActivityForResult(i, MOVE_CODE);
-        }catch(Exception e){
-            Toast.makeText(getApplicationContext(),"No images!", Toast.LENGTH_LONG).show();
+        } catch (Exception e) {
+            Toast.makeText(getApplicationContext(), "No images!", Toast.LENGTH_LONG).show();
         }
     }
+
     @Override
     public void onClick(View view) {
-        if(view.getId() == R.id.add){
+        if (view.getId() == R.id.add) {
             Intent galleryIntent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-            startActivityForResult(galleryIntent,RESULT_LOAD_IMAGE);
+            startActivityForResult(galleryIntent, RESULT_LOAD_IMAGE);
         }
     }
+
     public void delete(View view) {
         size = album.photoList.size();
         if (!album.photoList.isEmpty()) {
             album.deletePhoto(index);
             size--;
             if (index - 1 >= 0 || size != 0) {
-                if(index-1 >=0)
+                if (index - 1 >= 0)
                     index--;
                 else
                     index = 0;
                 imageToUpload.setImageBitmap(album.getPhotoList().get(index).getImage());
                 tags.setText(album.getPhotoList().get(index).getTag().toString());
             } else {
-                try{
+                try {
                     index = -1;
                     imageToUpload.setImageBitmap(null);
-                    Toast.makeText(getApplicationContext(), album.photoList.size() + "," + index, Toast.LENGTH_LONG).show();
-                }catch(Exception e){
+                } catch (Exception e) {
 
                 }
-
-
             }
         } else {
-            Toast.makeText(getApplicationContext(), "No photos to delete", Toast.LENGTH_LONG).show();
+            try {
+                Toast.makeText(getApplicationContext(), "No photos to delete", Toast.LENGTH_LONG).show();
+            } catch (Exception e) {
 
+            }
         }
-
-        //Toast.makeText(getApplicationContext(),album.photoList.size() + "", Toast.LENGTH_LONG).show();
     }
-    public void d(){
+
+    public void d() {
         size = album.photoList.size();
         album.deletePhoto(index);
         size--;
         if (index - 1 >= 0 || size != 0) {
-            if(index-1 >=0)
+            if (index - 1 >= 0)
                 index--;
             else
                 index = 0;
@@ -177,45 +156,44 @@ public class addPhoto extends AppCompatActivity implements  View.OnClickListener
             tags.setText(album.getPhotoList().get(index).getTag().toString());
         } else {
             imageToUpload.setImageBitmap(null);
-            Toast.makeText(getApplicationContext(), album.photoList.size() + "," + index, Toast.LENGTH_LONG).show();
-
         }
 
     }
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         Bundle bundle = new Bundle();
-        switch(requestCode) {
-            case(RESULT_LOAD_IMAGE): {
-                if(resultCode == RESULT_OK && data != null){
-                    Uri IMAGE_URI = data.getData() ;
+        switch (requestCode) {
+            case (RESULT_LOAD_IMAGE): {
+                if (resultCode == RESULT_OK && data != null) {
+                    Uri IMAGE_URI = data.getData();
                     InputStream image_stream = null;
                     try {
                         image_stream = getContentResolver().openInputStream(IMAGE_URI);
                     } catch (FileNotFoundException e) {
                         e.printStackTrace();
                     }
-                    try{
+                    try {
                         Bitmap bitmap = BitmapFactory.decodeStream(image_stream);
                         count++;
-                        Photo photo = new Photo("photo "+count, "caption", bitmap);
+                        Photo photo = new Photo("photo " + count, "caption", bitmap);
                         album.addPhoto(photo);
                         index++;
                         imageToUpload.setImageBitmap(album.getPhotoList().get(index).getImage());
                         tags.setText(album.getPhotoList().get(index).getTag().toString());
                         return;
-                    }catch(Exception e){
+                    } catch (Exception e) {
                     }
 
                 }
                 break;
             }
 
-            case(ADD_TAG_CODE) :{
+            case (ADD_TAG_CODE): {
                 try {
                     bundle = data.getExtras();
-                }catch (Exception e){
+                } catch (Exception e) {
                     break;
                 }
                 if (bundle == null) {
@@ -234,50 +212,49 @@ public class addPhoto extends AppCompatActivity implements  View.OnClickListener
                 }
                 break;
             }
-            case(DISPLAY_CODE):{
+            case (DISPLAY_CODE): {
                 try {
                     index = pen;
-                    Toast.makeText(getApplicationContext(), "Positions at: " + index + " was clicked", Toast.LENGTH_SHORT).show();
                     imageToUpload.setImageBitmap(album.getPhotoList().get(index).getImage());
                     tags.setText(album.getPhotoList().get(index).getTag().toString());
-                }catch(Exception e){
+                } catch (Exception e) {
                     Toast.makeText(getApplicationContext(), "No photos selected!", Toast.LENGTH_LONG).show();
 
                 }
                 break;
 
             }
-            case(MOVE_CODE): {
-                if(resultCode == RESULT_OK ){
+            case (MOVE_CODE): {
+                if (resultCode == RESULT_OK) {
                     Photo temp = albums.get(positions).getPhotoList().get(index);
                     d();
                     albums.get(posOfMove).getPhotoList().add(temp);
                 }
             }
-            default:{
+            default: {
                 break;
             }
         }
 
     }
 
-    public void addTag(View view){
+    public void addTag(View view) {
         Intent intent = new Intent(this, addTag.class);
         startActivityForResult(intent, ADD_TAG_CODE);
     }
-    public void deleteTag(View view){
-        try{
+
+    public void deleteTag(View view) {
+        try {
             album.getPhotoList().get(index).setTag(new Tag("Person ", "Location"));
             tags.setText(album.getPhotoList().get(index).getTag().toString());
-        }catch(Exception e){
-            Toast.makeText(getApplicationContext(),"No Tag Has Been Set Yet", Toast.LENGTH_LONG).show();
+        } catch (Exception e) {
+            Toast.makeText(getApplicationContext(), "No Tag Has Been Set Yet", Toast.LENGTH_LONG).show();
         }
     }
 
-    public void searchTag(View view){
+    public void searchTag(View view) {
         Bundle bundle = new Bundle();
         Intent i = new Intent(this, SearchTag.class);
         startActivityForResult(i, SEARCH_TAG_CODE);
     }
-
 }

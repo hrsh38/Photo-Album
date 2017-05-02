@@ -41,7 +41,13 @@ public class Album implements Serializable{
     }
 
     public void deletePhoto(int index) {
-        photoList.remove(index);
+		if(index == -1){
+			return;
+		}
+		else{
+			photoList.remove(index);
+		}
+
     }
 
     /**
