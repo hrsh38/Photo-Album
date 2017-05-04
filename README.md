@@ -1,3 +1,2 @@
 # Photo-Album
-Photo Album built in Android
-Full Photo Album implementing various features such as photo galleries, adding location tag and etc. 
+Photo Album built in Android. The Photo Album implements various features such as a photo gallery, adding location tags, manual slideshow and etc. 
